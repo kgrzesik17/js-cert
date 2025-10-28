@@ -52,11 +52,27 @@
 
 // console.log(now - 1991 > now - 2018);
 
-const firstName = 'Jonas'
-const job = 'teacher'
-const birthYear = 1991;
-const year = 2037;
+// const firstName = 'Jonas'
+// const job = 'teacher'
+// const birthYear = 1991;
+// const year = 2037;
 
-const jonas = `I'm ${firstName}. I'm a ${year - birthYear} year old ${job}.`
+// const jonas = `I'm ${firstName}. I'm a ${year - birthYear} year old ${job}.`
 
-console.log(jonas);
+// console.log(jonas);
+
+// const age = 19;
+// const isOldEnough = age >= 18;
+
+// type conversion
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+console.log(Number('Jonas'));
+console.log(typeof NaN);
+
+console.log(String(23), 23);
+
+// type coercion
+console.log('I am ' + 23 + ' years old.');
