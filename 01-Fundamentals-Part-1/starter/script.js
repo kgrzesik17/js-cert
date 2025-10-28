@@ -150,10 +150,20 @@
 //     console.log('Not a valid day');
 // }
 
-const age = 23;
-// age >= 18 ? console.log('I like to drink wine') : console.log('I like to drink water');
+// const age = 23;
+// // age >= 18 ? console.log('I like to drink wine') : console.log('I like to drink water');
 
-const drink = age >= 18 ? 'wine' : 'water';
-console.log(`I like to drink ${drink}`);
+// const drink = age >= 18 ? 'wine' : 'water';
+// console.log(`I like to drink ${drink}`);
 
-console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);
+// console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);
+
+// CHALLENGE 4
+const bill = 430;
+
+
+/* Write your code below. Good luck! 🙂 */
+
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value was ${bill + tip}`)
