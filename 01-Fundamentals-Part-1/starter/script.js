@@ -96,16 +96,41 @@
 // CHALLENGE 3
 /* Write your code below. Good luck! 🙂 */
 
-const scoreDolphins = (97 + 112 * 101) / 3;
-const scoreKoalas = (109 + 95 + 106) / 3;
-const minimumScore = 100;
+// const scoreDolphins = (97 + 112 * 101) / 3;
+// const scoreKoalas = (109 + 95 + 106) / 3;
+// const minimumScore = 100;
 
-if (scoreDolphins > scoreKoalas && scoreDolphins >= minimumScore) {
-    console.log("Dolphins win the trophy");
-} else if (scoreKoalas < scoreDolphins && scoreKoalas >= minimumScore) {
-    console.log("Koalas win the trophy");
-} else if (scoreKoalas < minimumScore && scoreDolphins < minimumScore) {
-    console.log("No one wins the trophy");
-} else {
-    console.log("Both win the trophy")
+// if (scoreDolphins > scoreKoalas && scoreDolphins >= minimumScore) {
+//     console.log("Dolphins win the trophy");
+// } else if (scoreKoalas < scoreDolphins && scoreKoalas >= minimumScore) {
+//     console.log("Koalas win the trophy");
+// } else if (scoreKoalas < minimumScore && scoreDolphins < minimumScore) {
+//     console.log("No one wins the trophy");
+// } else {
+//     console.log("Both win the trophy")
+// }
+
+const day = 'tuesday';
+
+switch(day) {
+    case 'monday':  // day === 'monday'
+        console.log('Plan course structure');
+        console.log('Go to coding meetup');
+        break;
+    case 'tuesday':
+        console.log('Prepare theory videos');
+        break;
+    case 'wednesday':
+    case 'thursday':
+        console.log('Write code examples');
+        break;
+    case 'friday':
+        console.log('Record videos');
+        break;
+    case 'saturday':
+    case 'sunday':
+        console.log('Enjoy the weekend :D');
+        break;
+    default:
+        console.log('Not a valid day');
 }
