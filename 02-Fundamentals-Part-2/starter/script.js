@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // let hasDriversLicense = false;
 // const passTest = true;
@@ -150,26 +150,43 @@
 // const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 // console.log(ages);
 
-const friends = ['Michael', 'Steven', 'Peter'];
+// const friends = ['Michael', 'Steven', 'Peter'];
 
-// add elements
-const newLength = friends.push('Jay');
-console.log(friends);
-console.log(newLength);
+// // add elements
+// const newLength = friends.push('Jay');
+// console.log(friends);
+// console.log(newLength);
 
-friends.unshift('John');
-console.log(friends);
+// friends.unshift('John');
+// console.log(friends);
 
-const popped = friends.pop();
-console.log(friends);
-console.log(popped);
+// const popped = friends.pop();
+// console.log(friends);
+// console.log(popped);
 
-friends.shift();
-console.log(friends);
+// friends.shift();
+// console.log(friends);
 
-console.log(friends.indexOf('Steven'));
-console.log(friends.includes('Steven'));
+// console.log(friends.indexOf('Steven'));
+// console.log(friends.includes('Steven'));
 
-if (friends.includes('Peter')) {
-    console.log('You have a friend called Peter.');
-}
+// if (friends.includes('Peter')) {
+//     console.log('You have a friend called Peter.');
+// }
+
+// function calcTip(bill) {
+//     if (bill >= 50 && bill <= 300) {
+//         return bill * 0.15;
+//     } else {
+//         return bill * 0.2;
+//     }
+// }
+
+const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2; 
+
+const bills = [125, 555, 44]
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+console.log(totals);
