@@ -283,35 +283,85 @@
 
 // console.log(jonas.getSummary());
 
-const mark = {
-    fullName: 'Mark Miller',
-    mass: '78',
-    height: '1.69',
+// const mark = {
+//     fullName: 'Mark Miller',
+//     mass: '78',
+//     height: '1.69',
 
-    calcBMI: function () {
-        this.bmi = this.mass / (this.height * this.height);
-        return this.bmi;
-    }
+//     calcBMI: function () {
+//         this.bmi = this.mass / (this.height * this.height);
+//         return this.bmi;
+//     }
+// }
+
+// const john = {
+//     fullName: 'John Smith',
+//     mass: '92',
+//     height: '1.95',
+
+//     calcBMI: function () {
+//         this.bmi = this.mass / (this.height * this.height);
+//         return this.bmi;
+//     }
+// }
+
+// console.log(mark.calcBMI());
+// console.log(john.calcBMI());
+
+// if (mark.bmi > john.bmi) {
+//     console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s BMI (${john.bmi})`);
+// } else if (john.bmi > mark.bmi) {
+//     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi})`);
+// } else {
+//     console.log(`${mark.fullName}'s and ${john.fullName}'s BMIs are the same`);
+// }
+
+// for(let rep = 1; rep <= 10; rep++) {
+//     console.log(`Lifting weights repetition ${rep}`);
+// }
+
+
+const jonas = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven'],
+    true
+];
+
+const types = [];
+
+for(let i = 0; i < jonas.length; i++){
+    console.log(jonas[i], typeof jonas[i]);
+
+    // types[i] = typeof jonas[i];
+
+    types.push(typeof jonas[i])
 }
 
-const john = {
-    fullName: 'John Smith',
-    mass: '92',
-    height: '1.95',
+console.log(types);
 
-    calcBMI: function () {
-        this.bmi = this.mass / (this.height * this.height);
-        return this.bmi;
-    }
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+    ages.push(2025 - years[i]);
 }
 
-console.log(mark.calcBMI());
-console.log(john.calcBMI());
+console.log(ages);
 
-if (mark.bmi > john.bmi) {
-    console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s BMI (${john.bmi})`);
-} else if (john.bmi > mark.bmi) {
-    console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi})`);
-} else {
-    console.log(`${mark.fullName}'s and ${john.fullName}'s BMIs are the same`);
+// continue and break
+console.log('\n\--- ONLY STRINGS ---\n\ ');
+for (let i = 0; i < jonas.length; i++) {
+    if(typeof jonas[i] !== 'string') continue;
+
+    console.log(jonas[i], typeof jonas[i]);
+}
+
+console.log('\n\--- BREAK WITH NUMBER ---\n\ ');
+for (let i = 0; i < jonas.length; i++) {
+    if(typeof jonas[i] === 'number') break;
+
+    console.log(jonas[i], typeof jonas[i]);
 }
