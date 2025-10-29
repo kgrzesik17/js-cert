@@ -91,23 +91,61 @@
 // }
 // console.log(process(2, 3));
 
-const calcAverage = (score1, score2, score3) => {
-    return (score1 + score2 + score3) / 3; 
+// const calcAverage = (score1, score2, score3) => {
+//     return (score1 + score2 + score3) / 3; 
+// }
+
+// const scoreDolphins = calcAverage(85, 54, 41);
+// const scoreKoalas = calcAverage(23, 34, 27);
+
+// function checkWinner(avgDolphins, avgKoalas) {
+//     if (avgDolphins >= avgKoalas * 2) {
+//         console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
+//     } else if (avgKoalas >= avgDolphins * 2) {
+//         console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`);            
+
+//     } else {
+//         console.log(`No team wins...`);
+//     }
+
+//     return 0;
+// }
+
+// checkWinner(scoreDolphins, scoreKoalas);
+
+const friend1 = 'Michael';
+const friend2 = 'Steven';
+const friend3 = 'Peter';
+
+let friends = ['Michael', 'Steven', 'Peter'];
+console.log(friends);
+
+const y = new Array(1991, 1984, 2007, 2020);
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+console.log(friends.length);
+console.log(friends[friends.length - 1]);
+
+friends[2] = 'Jay';
+console.log(friends);
+// friends = ['Bob', 'Alice'];
+// console.log(friends);
+
+const kacper = ['Kacper', 'G', 2025 - 2003, 'programmer', friends];
+console.log(kacper);
+
+// excercise 
+const calcAge = function (birthYear) {
+    return 2037 - birthYear;
 }
+const years = [1990, 1967, 2002, 2010, 2018];
 
-const scoreDolphins = calcAverage(85, 54, 41);
-const scoreKoalas = calcAverage(23, 34, 27);
+const age1 = calcAge(years[0]);
+const age2 = calcAge(years[1]);
+const age3 = calcAge(years[years.length - 1]);
+console.log(age1, age2, age3);
 
-function checkWinner(avgDolphins, avgKoalas) {
-    if (avgDolphins >= avgKoalas * 2) {
-        console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
-    } else if (avgKoalas >= avgDolphins * 2) {
-        console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`);            
-    } else {
-        console.log(`No team wins...`);
-    }
-
-    return 0;
-}
-
-checkWinner(scoreDolphins, scoreKoalas);
+const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
+console.log(ages);
