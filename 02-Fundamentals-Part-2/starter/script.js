@@ -59,16 +59,34 @@
 // console.log(yearsUntilRetirement(1991, 'Kacper'));
 // console.log(yearsUntilRetirement(1980, 'Bob'));
 
-function cutFruitPieces(fruit) {
-    return fruit * 4;
-}
+// function cutFruitPieces(fruit) {
+//     return fruit * 4;
+// }
 
-function fruitProcessor(apples, oranges) {
-    const applePieces = cutFruitPieces(apples);
-    const orangePieces = cutFruitPieces(oranges);
+// function fruitProcessor(apples, oranges) {
+//     const applePieces = cutFruitPieces(apples);
+//     const orangePieces = cutFruitPieces(oranges);
     
-    const juice = `Juice with ${applePieces} apple pieces and ${orangePieces} orange pieces.`
-    return juice;
-}
+//     const juice = `Juice with ${applePieces} apple pieces and ${orangePieces} orange pieces.`
+//     return juice;
+// }
 
-console.log(fruitProcessor(2, 3));
+// console.log(fruitProcessor(2, 3));
+
+function calcAge1(birthYear) {
+    return 2025 - birthYear;
+}
+console.log(calcAge1(2003));
+
+const calcAge2 = function(birthYear) {
+    return 2025 - birthYear;
+}
+console.log(calcAge2(2003));
+
+const calcAge3 = birthYear => 2025 - birthYear;
+console.log(calcAge3(2003));
+
+const process = (apples, oranges) => {
+    return `Juice made with ${apples} apples and ${oranges} oranges.`
+}
+console.log(process(2, 3));
