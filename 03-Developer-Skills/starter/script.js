@@ -10,4 +10,4 @@ function dsa() {
 
 const calcAge = (birthYear) => 2037 - birthYear;
 
-console.log(calcAge);
+console.log(calcAge(1991));
