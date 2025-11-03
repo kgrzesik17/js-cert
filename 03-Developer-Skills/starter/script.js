@@ -129,32 +129,128 @@
 - make sure to auto update it
 */
 
-function printForecast(arr) {
-  let output = "";
+// function printForecast(arr) {
+//   let output = "";
+
+//   for (let i = 0; i < arr.length; i++) {
+//     output += `${arr[i]}°C in ${i + 1} days ... `;
+//   }
+
+//   return "... " + output;
+// }
+
+// const test1 = [17, 21, 23];
+// const test2 = [12, 5, -5, 0, 4];
+
+// const forecast1 = printForecast(test1);
+// const forecast2 = printForecast(test2);
+// console.log(forecast1);
+// console.log(forecast2);
+
+// // CHALLENGE 3.1 - what it should be
+// /*
+// 1. UNDERSTAND THE PROBLEM
+// - array transformed to string, separated by ...
+// - what is X days? andwer: index + 1
+// 2. DIVIDE AND CONQUER
+// - transform array into string
+// - transform each elements to string with °C
+// - strings need to containd day (index + 1)
+// - add ... betwee nelements and start and end of the string
+// */
+
+// challenge 2.1
+/*
+1. understanding
+- how to output the day with the most hours worked? - index to str
+- what's the output type? - object
+- what's the input format? - [0]: mon, [6]: sun
+2. divide and conquer
+- sum total hours worked ✔️
+- check average daily hours ✔️
+- check the max index ✔️
+- transform max index to string (day) ✔️
+- check the number where hours > 0 ✔️
+- check if sum > 35
+- write it down to an object
+*/
+
+function sumArray(arr) {
+  let sum = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    output += `${arr[i]}°C in ${i + 1} days ... `;
+    sum += arr[i];
   }
 
-  return "... " + output;
+  return sum;
 }
 
-const test1 = [17, 21, 23];
-const test2 = [12, 5, -5, 0, 4];
+function checkMaxIndex(arr) {
+  let max = arr[0];
+  let maxIndex = 0;
 
-const forecast1 = printForecast(test1);
-const forecast2 = printForecast(test2);
-console.log(forecast1);
-console.log(forecast2);
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+      maxIndex = i;
+    }
+  }
 
-// CHALLENGE 3.1 - what it should be
-/*
-1. UNDERSTAND THE PROBLEM
-- array transformed to string, separated by ...
-- what is X days? andwer: index + 1
-2. DIVIDE AND CONQUER
-- transform array into string
-- transform each elements to string with °C
-- strings need to containd day (index + 1)
-- add ... betwee nelements and start and end of the string
-*/
+  return maxIndex;
+}
+
+function workHours(hours) {
+  const sum = sumArray(hours); // check the sum
+  const avg = sum / hours.length; // check the average
+  const maxIndex = checkMaxIndex(hours); // check the index of max value
+  let mostWorkedDay = ""; // busiest work day
+  let workingDays = 0;
+  const fullTime = sum >= 35 ? true : false; // check if work was full time
+
+  // convert index to string
+  switch (maxIndex) {
+    case 0:
+      mostWorkedDay = "Monday";
+      break;
+    case 1:
+      mostWorkedDay = "Tuesday";
+      break;
+    case 2:
+      mostWorkedDay = "Wednesday";
+      break;
+    case 3:
+      mostWorkedDay = "Thursday";
+      break;
+    case 4:
+      mostWorkedDay = "Friday";
+      break;
+    case 5:
+      mostWorkedDay = "Saturday";
+      break;
+    case 60:
+      mostWorkedDay = "Sunday";
+      break;
+  }
+
+  // check the number of working days
+  for (let i = 0; i < hours.length; i++) {
+    if (hours[i] !== 0) {
+      workingDays++;
+    }
+  }
+
+  return {
+    totalHours: sum,
+    averageDailyHours: avg,
+    mostHoursWorkedDay: mostWorkedDay,
+    daysWorked: workingDays,
+    isFullTime: fullTime,
+  };
+}
+
+const test = [1, 3, 2];
+const data = [7.5, 8, 6.5, 0, 8.5, 5, 0];
+
+// console.log(sum([1, 2, -3, 10]));
+const work = workHours(data);
+console.log(work);
