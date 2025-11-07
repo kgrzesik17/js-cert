@@ -22,8 +22,36 @@ main .click-button-container #click-button {
 main .click-button-container #click-button:hover {
   cursor: pointer;
 }
+main .click-button-container #click-button:active {
+  background-color: #a5c214;
+}
 main .cash-info-container {
   color: #696969;
+}
+main .shop {
+  display: flex;
+}
+main .shop-item {
+  color: white;
+  text-align: center;
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 0.5rem;
+  background-color: #454545;
+}
+main .shop-item p {
+  margin: 0.5;
+}
+main .shop-item button {
+  font-size: 2rem;
+  border: 0;
+  background-color: #d4ff00;
+}
+main .shop-item button:hover {
+  cursor: pointer;
+}
+main .shop-item button:active {
+  background-color: #a5c214;
 }
 
 /*# sourceMappingURL=style.css.map */
