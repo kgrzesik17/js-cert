@@ -8,12 +8,12 @@ let items = [
     value: 1,
     isPerSecond: false,
   },
-  // {
-  //   name: "Click Coaching Session",
-  //   price: 100,
-  //   value: 5,
-  //   isPerSecond: false,
-  // },
+  {
+    name: "Click Coaching Session",
+    price: 100,
+    value: 5,
+    isPerSecond: false,
+  },
 ];
 
 const priceMultiplier = 1.35; // cost multiplier after buying an item
@@ -68,11 +68,20 @@ refreshCashInfo();
 for (let i = 0; i < items.length; i++) {
   let buttonId = `buy-item__${i}`;
 
-  dShop.innerHTML += `<div class="shop-item" id="${i}">
+  dShop.insertAdjacentHTML(
+    "beforeend",
+    `<div class="shop-item" id="${i}">
           <p class="shop-item__name">${items[i].name}</p>
           <p>+<span class="shop-item__value">${items[i].value}</span>$ per click</p>
           <p><input type="button" id="${buttonId}" value="${items[i].price}$"><span class="shop-item__cost"></span></p>
-        </div>`;
+        </div>`
+  );
+
+  // dShop.innerHTML += `<div class="shop-item" id="${i}">
+  //         <p class="shop-item__name">${items[i].name}</p>
+  //         <p>+<span class="shop-item__value">${items[i].value}</span>$ per click</p>
+  //         <p><input type="button" id="${buttonId}" value="${items[i].price}$"><span class="shop-item__cost"></span></p>
+  //       </div>`;
 
   document.querySelector("#" + buttonId).addEventListener("click", buyItem);
 }
