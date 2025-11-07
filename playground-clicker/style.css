@@ -32,12 +32,17 @@ main .shop {
   display: flex;
 }
 main .shop-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: white;
   text-align: center;
   border: 1px solid black;
   margin: 1rem;
   padding: 0.5rem;
   background-color: #454545;
+  width: 12rem;
+  height: 12rem;
 }
 main .shop-item p {
   margin: 0.5;
