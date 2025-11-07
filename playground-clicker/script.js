@@ -8,6 +8,7 @@ let items = [
     description: "And people say you can't buy skill",
     value: 1,
     isPerSecond: false,
+    amount: 0,
   },
   {
     name: "Click Coaching Session",
@@ -15,6 +16,7 @@ let items = [
     description: "He's got years of experience",
     value: 5,
     isPerSecond: false,
+    amount: 0,
   },
   {
     name: "Little brother",
@@ -22,6 +24,7 @@ let items = [
     description: "He's always happy to help you out",
     value: 1,
     isPerSecond: true,
+    amount: 0,
   },
   {
     name: "Auto Clicker",
@@ -29,6 +32,7 @@ let items = [
     description: "Wait, isn't that cheating?",
     value: 10,
     isPerSecond: true,
+    amount: 0,
   },
   {
     name: "JS console",
@@ -36,6 +40,7 @@ let items = [
     description: "Feel like a true hacker",
     value: 100,
     isPerSecond: true,
+    amount: 0,
   },
 ];
 
@@ -77,7 +82,8 @@ function buyItem(item) {
     cash -= items[itemId].price;
     items[itemId].price = parseFloat(
       (items[itemId].price * priceMultiplier).toFixed(2)
-    ); // round to 2 floating points
+    ); // round to 2 floating points\
+    items[itemId].amount++;
 
     if (items[itemId].isPerSecond) {
       cashPerSecond += items[itemId].value;
@@ -112,7 +118,9 @@ for (let i = 0; i < items.length; i++) {
   }`;
   let price = items[i].price;
   let description = items[i].description;
+  let amount = items[i].amount;
 
+  // TODO: display the amount
   let html = `<div class="shop-item" id="${i}">
           <p class="shop-item__name">${name}</p>
           <p class="shop-item__description">${description}</p>
@@ -123,12 +131,6 @@ for (let i = 0; i < items.length; i++) {
   items[i].isPerSecond
     ? dShopPerSecond.insertAdjacentHTML("beforeend", html)
     : dShopPerClick.insertAdjacentHTML("beforeend", html);
-
-  // dShop.innerHTML += `<div class="shop-item" id="${i}">
-  //         <p class="shop-item__name">${items[i].name}</p>
-  //         <p>+<span class="shop-item__value">${items[i].value}</span>$ per click</p>
-  //         <p><input type="button" id="${buttonId}" value="${items[i].price}$"><span class="shop-item__cost"></span></p>
-  //       </div>`;
 
   document.querySelector("#" + buttonId).addEventListener("click", buyItem);
 }
