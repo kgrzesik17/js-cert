@@ -1,17 +1,23 @@
-const showPoints = document.querySelector("#points");
+"use strict";
+
+const dCash = document.querySelector("#cash-amount");
+const dCashPerClick = document.querySelector("#cash-per-click");
 // const interval = window.setInterval(addPersistent, 1000);
 
-let points = 0;
+let cash = 0;
+let cashPerClick = 1;
 
 function refreshPoints() {
-  showPoints.textContent = points;
+  dCash.textContent = cash;
 }
 
-document.querySelector("#add").addEventListener("click", function () {
-  points++;
+function refreshCashInfo() {
+  dCashPerClick.textContent = cashPerClick;
+}
+
+document.querySelector("#click-button").addEventListener("click", function () {
+  cash += cashPerClick;
   refreshPoints();
 });
 
-function addPersistent() {
-  console.log("test");
-}
+refreshCashInfo();

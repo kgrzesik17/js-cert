@@ -1,5 +1,6 @@
 body {
   background-color: #2c2c2c;
+  font-family: sans-serif;
 }
 
 main {
@@ -8,20 +9,21 @@ main {
   justify-content: center;
   align-items: center;
 }
-
-.cash-container #cash {
+main .cash-container #cash {
   font-size: 5rem;
   margin: 0;
-  color: #fff;
+  color: #fffeee;
 }
-
-.click-button-container #click-button {
+main .click-button-container #click-button {
   font-size: 2rem;
   border: 0;
   background-color: #d4ff00;
 }
-.click-button-container #click-button:hover {
+main .click-button-container #click-button:hover {
   cursor: pointer;
+}
+main .cash-info-container {
+  color: #696969;
 }
 
 /*# sourceMappingURL=style.css.map */
