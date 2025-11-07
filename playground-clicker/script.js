@@ -5,35 +5,59 @@ let items = [
   {
     name: "Gaming Mouse",
     price: 1,
+    description: "And people say you can't buy skill",
     value: 1,
     isPerSecond: false,
   },
   {
     name: "Click Coaching Session",
-    price: 100,
+    price: 20,
+    description: "He's got years of experience",
     value: 5,
     isPerSecond: false,
   },
   {
     name: "Little brother",
-    price: 1000,
+    price: 100,
+    description: "He's always happy to help you out",
     value: 1,
+    isPerSecond: true,
+  },
+  {
+    name: "Auto Clicker",
+    price: 2000,
+    description: "Wait, isn't that cheating?",
+    value: 10,
+    isPerSecond: true,
+  },
+  {
+    name: "JS console",
+    price: 50000,
+    description: "Feel like a true hacker",
+    value: 100,
     isPerSecond: true,
   },
 ];
 
-const priceMultiplier = 1.35; // cost multiplier after buying an item
 const dCash = document.querySelector("#cash-amount");
 const dCashPerClick = document.querySelector("#cash-per-click");
 const dCashPerSecond = document.querySelector("#cash-per-second");
 const dShopPerClick = document.querySelector(".shop-per-click");
 const dShopPerSecond = document.querySelector(".shop-per-second");
+const dInfo = document.querySelector(".info");
+const interval = window.setInterval(addPerSecond, 1000); // add cash per second
 
-const interval = window.setInterval(addPerSecond, 1000);
+const priceMultiplier = 1.25; // cost multiplier after buying an item
 
 let cash = 11110;
 let cashPerClick = 1;
 let cashPerSecond = 0;
+
+function showInfo(content) {
+  dInfo.innerHTML = `<p>${content}</p>`;
+  dInfo.classList.remove("hidden");
+  setTimeout(() => dInfo.classList.add("hidden"), 500);
+}
 
 function refreshCash() {
   dCash.textContent = cash.toFixed(2);
@@ -68,6 +92,8 @@ function buyItem(item) {
 
     console.log("Item bought!");
   } else {
+    showInfo("Not enough money!");
+
     console.log("Not enough money!");
   }
 }
@@ -85,8 +111,11 @@ for (let i = 0; i < items.length; i++) {
     items[i].isPerSecond ? "second" : "click"
   }`;
   let price = items[i].price;
+  let description = items[i].description;
+
   let html = `<div class="shop-item" id="${i}">
           <p class="shop-item__name">${name}</p>
+          <p class="shop-item__description">${description}</p>
           <p class="shop-item__value">${value}</p>
           <p><input type="button" id="${buttonId}" value="${price}$"><span class="shop-item__cost"></span></p>
         </div>`;

@@ -9,11 +9,16 @@ body {
   height: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 .info {
+  top: 1rem;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  background-color: red;
+  background-color: #aaa;
 }
 .info p {
   padding: 0 0.5rem;
@@ -51,7 +56,7 @@ main .cash-info-container {
   text-align: center;
 }
 main .shop-per-click,
-main .shop-per.second {
+main .shop-per-second {
   display: flex;
 }
 main .shop-item {
@@ -64,15 +69,18 @@ main .shop-item {
   margin: 1rem;
   padding: 0.5rem;
   background-color: #454545;
-  width: 15rem;
-  height: 15rem;
+  width: 16rem;
+  height: 16rem;
 }
 main .shop-item .shop-item__name {
   font-size: 1.5rem;
   font-weight: bold;
 }
+main .shop-item .shop-item__description {
+  color: #acacac;
+}
 main .shop-item p {
-  margin: 0.5;
+  margin: 0.5rem;
 }
 main .shop-item input {
   font-size: 2rem;
