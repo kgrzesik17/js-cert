@@ -20,7 +20,7 @@ let items = [
   },
   {
     name: "Little brother",
-    price: 100,
+    price: 10,
     description: "He's always happy to help you out",
     value: 1,
     isPerSecond: true,
@@ -28,7 +28,7 @@ let items = [
   },
   {
     name: "Auto Clicker",
-    price: 2000,
+    price: 200,
     description: "Wait, isn't that cheating?",
     value: 10,
     isPerSecond: true,
@@ -36,7 +36,7 @@ let items = [
   },
   {
     name: "JS console",
-    price: 50000,
+    price: 5000,
     description: "Feel like a true hacker",
     value: 100,
     isPerSecond: true,
@@ -141,7 +141,7 @@ for (let i = 0; i < items.length; i++) {
 
 function addPerSecond() {
   // adds in 0.01s intervals
-  cash += cashPerSecond / 1000;
+  cash += cashPerSecond / 100;
   refreshCash();
 }
 
