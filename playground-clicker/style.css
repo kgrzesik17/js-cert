@@ -79,6 +79,10 @@ main .shop-item .shop-item__name {
 main .shop-item .shop-item__description {
   color: #acacac;
 }
+main .shop-item .shop-item__amount {
+  color: #acacac;
+  font-size: 0.8rem;
+}
 main .shop-item p {
   margin: 0.5rem;
 }

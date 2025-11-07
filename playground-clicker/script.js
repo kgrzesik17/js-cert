@@ -77,8 +77,10 @@ function buyItem(item) {
   const targetId = item.target.id;
   const itemId = targetId.split("__")[1];
   const selector = document.querySelector(`#${targetId}`);
+  const amount = document.querySelector(`#amount__${itemId}`);
 
   if (cash >= items[itemId].price) {
+    // make sure there's enough cash
     cash -= items[itemId].price;
     items[itemId].price = parseFloat(
       (items[itemId].price * priceMultiplier).toFixed(2)
@@ -94,7 +96,8 @@ function buyItem(item) {
     refreshCash();
     refreshCashInfo();
 
-    selector.value = items[itemId].price + "$";
+    selector.value = items[itemId].price + "$"; // refresh the price
+    amount.textContent = `Amount: ${items[itemId].amount}`; // refresh the amount
 
     console.log("Item bought!");
   } else {
@@ -122,6 +125,7 @@ for (let i = 0; i < items.length; i++) {
 
   // TODO: display the amount
   let html = `<div class="shop-item" id="${i}">
+          <p class="shop-item__amount" id="amount__${i}">Amount: ${amount}</p>
           <p class="shop-item__name">${name}</p>
           <p class="shop-item__description">${description}</p>
           <p class="shop-item__value">${value}</p>
