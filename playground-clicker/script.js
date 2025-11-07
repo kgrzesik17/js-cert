@@ -50,11 +50,11 @@ const dCashPerSecond = document.querySelector("#cash-per-second");
 const dShopPerClick = document.querySelector(".shop-per-click");
 const dShopPerSecond = document.querySelector(".shop-per-second");
 const dInfo = document.querySelector(".info");
-const interval = window.setInterval(addPerSecond, 1000); // add cash per second
+const interval = window.setInterval(addPerSecond, 10); // add cash per second
 
 const priceMultiplier = 1.25; // cost multiplier after buying an item
 
-let cash = 11110;
+let cash = 0;
 let cashPerClick = 1;
 let cashPerSecond = 0;
 
@@ -136,7 +136,8 @@ for (let i = 0; i < items.length; i++) {
 }
 
 function addPerSecond() {
-  cash += cashPerSecond;
+  // adds in 0.01s intervals
+  cash += cashPerSecond / 1000;
   refreshCash();
 }
 
