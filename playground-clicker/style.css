@@ -47,15 +47,15 @@ main .shop-item {
 main .shop-item p {
   margin: 0.5;
 }
-main .shop-item button {
+main .shop-item input {
   font-size: 2rem;
   border: 0;
   background-color: #d4ff00;
 }
-main .shop-item button:hover {
+main .shop-item input:hover {
   cursor: pointer;
 }
-main .shop-item button:active {
+main .shop-item input:active {
   background-color: #a5c214;
 }
 
