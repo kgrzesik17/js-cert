@@ -110,7 +110,6 @@ matilda.calcAge();
 
 const f = jonas.calcAge;
 f();
-*/
 
 // var firstName = 'Matilda';
 
@@ -120,40 +119,53 @@ const jonas = {
   calcAge: function () {
     console.log(this);
     console.log(2025 - this.year);
-
+    
     // // solution 1
     // const self = this; // self or that
     // const isMillenial = function () {
-    //   console.log(self);
-    //   console.log(self.year >= 1981 && this.year <= 1996);
-    // };
-    // isMillenial();
+      //   console.log(self);
+      //   console.log(self.year >= 1981 && this.year <= 1996);
+      // };
+      // isMillenial();
+      
+      // solution 2
+      const self = this; // self or that
+      const isMillenial = () => {
+        console.log(this);
+        console.log(this.year >= 1981 && this.year <= 1996);
+      };
+      isMillenial();
+    },
+    
+    greet: () => console.log(`Hey ${this.firstName}`),
+  };
+  
+  jonas.greet();
+  jonas.calcAge();
+  
+  // arguments keyword
+  const addExpr = function (a, b) {
+    console.log(arguments);
+    return a + b;
+  };
+  addExpr(2, 5);
+  addExpr(2, 5, 8, 12);
+  
+  var addArrow = (a, b) => {
+    console.log(arguments);
+    return a + b;
+  };
+  addArrow(2, 5, 8);
+*/
 
-    // solution 2
-    const self = this; // self or that
-    const isMillenial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
-    isMillenial();
-  },
+function addAll() {
+  let output = 0;
 
-  greet: () => console.log(`Hey ${this.firstName}`),
-};
+  for (let i = 0; i < arguments.length; i++) {
+    output += arguments[i];
+  }
 
-jonas.greet();
-jonas.calcAge();
+  return output;
+}
 
-// arguments keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 5);
-addExpr(2, 5, 8, 12);
-
-var addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
-addArrow(2, 5, 8);
+console.log(addAll(3, 3, 3, 6, 1, 23, -12));
