@@ -156,16 +156,64 @@ const jonas = {
     return a + b;
   };
   addArrow(2, 5, 8);
+  
+  function addAll() {
+    let output = 0;
+    
+    for (let i = 0; i < arguments.length; i++) {
+      output += arguments[i];
+    }
+    
+    return output;
+  }
+  
+  console.log(addAll(3, 3, 3, 6, 1, 23, -12));
+  
 */
 
-function addAll() {
-  let output = 0;
+// object references in practice (shallow vs deep copies)
 
-  for (let i = 0; i < arguments.length; i++) {
-    output += arguments[i];
-  }
+const jessica1 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
 
-  return output;
+function marryPerson(originalPerson, newLastName) {
+  originalPerson.lastName = newLastName;
+  return originalPerson;
 }
 
-console.log(addAll(3, 3, 3, 6, 1, 23, -12));
+const marriedJessica = marryPerson(jessica1, 'Davis');
+
+// const marriedJessica = jessica1;
+// marriedJessica.lastName = 'Davis';
+
+console.log('Before: ', jessica1);
+console.log('After: ', marriedJessica);
+// the values are the same!
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+// shallow copy
+const jessicaCopy = { ...jessica }; // spread operator
+jessicaCopy.lastName = 'Davis';
+
+// jessicaCopy.family.push('Mary');
+// jessicaCopy.family.push('John');
+
+// console.log('Before: ', jessica);
+// console.log('After: ', jessicaCopy);
+
+// deep copy or deep clone
+const jessicaClone = structuredClone(jessica);
+jessicaClone.family.push('Mary');
+jessicaClone.family.push('John');
+
+console.log('Original: ', jessica);
+console.log('Clone: ', jessicaClone);
