@@ -123,7 +123,6 @@ for (let i = 0; i < items.length; i++) {
   let description = items[i].description;
   let amount = items[i].amount;
 
-  // TODO: display the amount
   let html = `<div class="shop-item" id="${i}">
           <p class="shop-item__amount" id="amount__${i}">Amount: ${amount}</p>
           <p class="shop-item__name">${name}</p>
