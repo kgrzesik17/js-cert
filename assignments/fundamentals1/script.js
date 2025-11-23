@@ -5,10 +5,10 @@ const continent = "Europe";
 let population = 38;
 const isIsland = false;
 let language;
+const capitalCity = "Warsaw";
 
 language = "polish";
 
-/*
 console.log(country, continent, population);
 
 console.log(
@@ -52,7 +52,6 @@ if (numNeighbours === 1) {
 } else {
   console.log("No borders");
 }
-*/
 
 if (language === "English" && population < 50 && !isIsland) {
   console.log(`You should live in ${country}`);
