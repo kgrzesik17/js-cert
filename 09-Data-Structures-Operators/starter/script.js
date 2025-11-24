@@ -72,6 +72,15 @@ const restaurant = {
   },
 };
 
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// nullish values: null, undefined
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
+
+/*
 console.log('----- OR -----');
 // use any data type, return any data type, short-circuring
 console.log(3 || 'Jonas');
@@ -99,7 +108,7 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
-/*
+
 // spread becasue on RIGHT side of =
 const arr = [1, 2, ...[3, 4]];
 
