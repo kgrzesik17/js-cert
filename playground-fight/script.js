@@ -1,26 +1,49 @@
 "use strict";
 
 const env = {
-  1: {
-    name: "warrior",
-    hpMultiplier: 10,
-    avoidDamageName: "blocked",
-    avoidDamageChance: 0.25,
-    damageReduction: 0.5,
-  },
-  2: {
-    name: "marksman",
-    hpMultiplier: 3,
-    avoidDamageName: "dodged",
-    avoidDamageChance: 0.5,
-    damageReduction: 0.25,
-  },
-  3: {
-    name: "mage",
-    hpMultiplier: 5,
-    avoidDamageName: "blocked",
-    avoidDamageChance: 0,
-    damageReduction: 0.1,
+  damageSpread: [0.75, 1.25],
+
+  classes: {
+    1: {
+      name: "warrior",
+      hpMultiplier: 10,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0.25,
+      damageReduction: 0.5,
+      multiHitchance: 0,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+    2: {
+      name: "marksman",
+      hpMultiplier: 3,
+      avoidDamageName: "dodged",
+      avoidDamageChance: 0.5,
+      damageReduction: 0.25,
+      multiHitchance: 0,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+    3: {
+      name: "mage",
+      hpMultiplier: 5,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0,
+      damageReduction: 0.1,
+      multiHitchance: 0,
+      alwaysHits: true,
+      ignoreArmor: true,
+    },
+    4: {
+      name: "assasin",
+      hpMultiplier: 3,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0,
+      damageReduction: 0.2,
+      multiHitchance: 0.5,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
   },
 };
 
@@ -28,30 +51,35 @@ class Player {
   constructor(name, player_class, strength, constitution) {
     this.name = name;
     this.damage = strength;
-    // this.hp = env[player_class].hpMultiplier * constitution;
+    // this.hp = env.classes[player_class].hpMultiplier * constitution;
     this.hp = constitution * 10; // TODO
-    this.currentHp = this.hp;
     this.critChance = 0.5; // TODO
     this.critMultiplier = 2;
-    this.avoidDamageChance = env[player_class].avoidDamageChance;
-    this.avoidDamageName = env[player_class].avoidDamageName;
-    this.damageReduction = env[player_class].damageReduction;
+    this.avoidDamageChance = env.classes[player_class].avoidDamageChance;
+    this.avoidDamageName = env.classes[player_class].avoidDamageName;
+    this.damageReduction = env.classes[player_class].damageReduction;
+    this.alwaysHits = env.classes[player_class].alwaysHits;
+    this.ignoreArmor = env.classes[player_class].ignoreArmor;
 
-    this.multiHitchance = 0.5;
+    this.multiHitchance = env.classes[player_class].multiHitchance;
   }
 }
 
 function calculateSingleHitDamage(attacker, defender) {
-  const damage_multiplier = Math.random() * (1.25 - 0.75) + 0.75; // damage spread
+  const damage_multiplier =
+    Math.random() * (env.damageSpread[1] - env.damageSpread[0]) +
+    env.damageSpread[0]; // damage spread
   const isCrit = Math.random() <= attacker.critChance ? true : false;
-  const isHit = Math.random() > defender.avoidDamageChance ? true : false;
+  let isHit = Math.random() > defender.avoidDamageChance ? true : false;
+
+  if (attacker.alwaysHits) isHit = true; // always hit for certain classes
 
   if (!isHit) return [0, isCrit];
 
   let damage = attacker.damage * damage_multiplier; // check damge fluctuation
   if (isCrit) damage *= attacker.critMultiplier; // increase damage if crit
 
-  damage *= 1 - defender.damageReduction; // apply damage reduction
+  if (!attacker.ignoreArmor) damage *= 1 - defender.damageReduction; // apply damage reduction
 
   damage = Math.round(damage);
 
@@ -60,6 +88,9 @@ function calculateSingleHitDamage(attacker, defender) {
 }
 
 function fight(attacker, defender) {
+  attacker.currentHp = attacker.hp;
+  defender.currentHp = defender.hp;
+
   while (attacker.currentHp > 0 && defender.currentHp > 0) {
     round(attacker, defender);
     if (defender.currentHp <= 0) {
@@ -89,15 +120,14 @@ function round(attacker, defender, isMultiHit = false) {
 }
 
 function log(singleHitDamage, attacker, defender, isMultiHit) {
-  // BUG: combos not showing properly
   let message = "";
 
   if (singleHitDamage[0] == 0) {
-    message = `${attacker.name} missed! ${defender.name} ${defender.avoidDamageName}! ${defender.name} HP: ${defender.currentHp}`;
+    message = `${attacker.name} missed! ${defender.name} ${defender.avoidDamageName}! ${defender.name}'s HP: ${defender.currentHp}`;
   } else if (singleHitDamage[1] == true) {
-    message = `${attacker.name} dealt ${singleHitDamage[0]} (!) damage. ${defender.name} HP: ${defender.currentHp}`;
+    message = `${attacker.name} dealt ${singleHitDamage[0]} (!) damage. ${defender.name}'s HP: ${defender.currentHp}`;
   } else {
-    message = `${attacker.name} dealt ${singleHitDamage[0]} damage. ${defender.name} HP: ${defender.currentHp}`;
+    message = `${attacker.name} dealt ${singleHitDamage[0]} damage. ${defender.name}'s HP: ${defender.currentHp}`;
   }
 
   if (isMultiHit) message += " COMBO!";
@@ -107,13 +137,29 @@ function log(singleHitDamage, attacker, defender, isMultiHit) {
   return message;
 }
 
-function loop(p1, p2) {
-  for (let i = 0; i < 10; i++) {
-    calculateSingleHitDamage(p1, p2);
-  }
-}
-
 const p1 = new Player("Warrior", 1, 10, 10);
 const p2 = new Player("Marksman", 2, 10, 10);
+const p3 = new Player("Mage", 3, 10, 10);
+const p4 = new Player("Assasin", 4, 10, 10);
 
-fight(p1, p2);
+fight(p4, p1);
+
+function checkWinrate(attacker, defender, rounds) {
+  let won = 0;
+
+  for (let i = 0; i < rounds; i++) {
+    if (fight(attacker, defender)) won++;
+  }
+
+  const winrate = (won / rounds) * 100 + "%";
+
+  console.log(won);
+  console.log(winrate);
+  return winrate;
+}
+
+function tournament(p1, p2, p3, p4, roundsPerPlayer) {
+  winrates = [0, 0, 0, 0];
+
+  for (let i = 0; i < roundsPerPlayer; i++) {}
+}
