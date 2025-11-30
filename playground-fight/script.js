@@ -36,6 +36,8 @@ class Player {
     this.avoidDamageChance = env[player_class].avoidDamageChance;
     this.avoidDamageName = env[player_class].avoidDamageName;
     this.damageReduction = env[player_class].damageReduction;
+
+    this.multiHitchance = 0.5;
   }
 }
 
@@ -59,22 +61,15 @@ function calculateSingleHitDamage(attacker, defender) {
 
 function fight(attacker, defender) {
   // TODO: DRY
+
   while (attacker.currentHp > 0 && defender.currentHp > 0) {
-    let singleHitDamage = calculateSingleHitDamage(attacker, defender);
-
-    defender.currentHp -= singleHitDamage[0];
-    log(singleHitDamage, attacker, defender);
-
+    round(attacker, defender);
     if (defender.currentHp <= 0) {
       console.log(`${attacker.name} has won!`);
       return 1;
     }
 
-    singleHitDamage = calculateSingleHitDamage(defender, attacker);
-
-    attacker.currentHp -= singleHitDamage[0];
-    log(singleHitDamage, defender, attacker);
-
+    round(defender, attacker);
     if (attacker.currentHp <= 0) {
       console.log(`${defender.name} has won!`);
       return 0;
@@ -82,20 +77,33 @@ function fight(attacker, defender) {
   }
 }
 
-function log(singleHitDamage, attacker, defender) {
+function round(attacker, defender, isMultiHit = false) {
+  const singleHitDamage = calculateSingleHitDamage(attacker, defender);
+
+  defender.currentHp -= singleHitDamage[0];
+  log(singleHitDamage, attacker, defender, isMultiHit);
+
+  if (Math.random() <= attacker.multiHitchance) round(attacker, defender, true);
+
+  return true;
+}
+
+function log(singleHitDamage, attacker, defender, isMultiHit) {
+  let message = "";
+
   if (singleHitDamage[0] == 0) {
-    console.log(
-      `${defender.name} ${defender.avoidDamageName}. ${defender.name} HP: ${defender.currentHp}`
-    );
+    message = `${defender.name} ${defender.avoidDamageName}. ${defender.name} HP: ${defender.currentHp}`;
   } else if (singleHitDamage[1] == true) {
-    console.log(
-      `${attacker.name} dealt ${singleHitDamage[0]}! damage. ${defender.name} HP: ${defender.currentHp}`
-    );
+    message = `${attacker.name} dealt ${singleHitDamage[0]}! damage. ${defender.name} HP: ${defender.currentHp}`;
   } else {
-    console.log(
-      `${attacker.name} dealt ${singleHitDamage[0]} damage. ${defender.name} HP: ${defender.currentHp}`
-    );
+    message = `${attacker.name} dealt ${singleHitDamage[0]} damage. ${defender.name} HP: ${defender.currentHp}`;
   }
+
+  if (isMultiHit) message += " COMBO!";
+
+  console.log(message);
+
+  return message;
 }
 
 function loop(p1, p2) {
