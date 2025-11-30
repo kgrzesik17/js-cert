@@ -1,6 +1,70 @@
 "use strict";
-import { gameVariables } from "/gameVariables.js";
-import { Player } from "/Player.js";
+
+const gameVariables = {
+  damageSpread: [0.75, 1.25],
+
+  classes: {
+    1: {
+      name: "warrior",
+      hpMultiplier: 10,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0.25,
+      damageReduction: 0.5,
+      multiHitChance: 0,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+    2: {
+      name: "marksman",
+      hpMultiplier: 3,
+      avoidDamageName: "dodged",
+      avoidDamageChance: 0.5,
+      damageReduction: 0.25,
+      multiHitChance: 0,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+    3: {
+      name: "mage",
+      hpMultiplier: 5,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0,
+      damageReduction: 0.1,
+      multiHitChance: 0,
+      alwaysHits: true,
+      ignoreArmor: true,
+    },
+    4: {
+      name: "assasin",
+      hpMultiplier: 3,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0,
+      damageReduction: 0.2,
+      multiHitChance: 0.5,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+  },
+};
+
+export class Player {
+  constructor(name, level, player_class, strength, constitution) {
+    this.name = name;
+    this.damage = strength;
+    this.hp =
+      gameVariables.classes[player_class].hpMultiplier * constitution * level;
+    this.critChance = 0.5; // TODO
+    this.critMultiplier = 2;
+    this.avoidDamageChance =
+      gameVariables.classes[player_class].avoidDamageChance;
+    this.avoidDamageName = gameVariables.classes[player_class].avoidDamageName;
+    this.damageReduction = gameVariables.classes[player_class].damageReduction;
+    this.alwaysHits = gameVariables.classes[player_class].alwaysHits;
+    this.ignoreArmor = gameVariables.classes[player_class].ignoreArmor;
+
+    this.multiHitChance = gameVariables.classes[player_class].multiHitChance;
+  }
+}
 
 function calculateSingleHitDamage(attacker, defender) {
   const damage_multiplier =
@@ -29,6 +93,8 @@ function fight(attacker, defender) {
   attacker.currentHp = attacker.hp;
   defender.currentHp = defender.hp;
 
+  console.log(attacker.multiHitChance);
+
   while (attacker.currentHp > 0 && defender.currentHp > 0) {
     round(attacker, defender);
     if (defender.currentHp <= 0) {
@@ -52,7 +118,7 @@ function round(attacker, defender, isMultiHit = false) {
 
   if (defender.currentHp <= 0) return [singleHitDamage, isMultiHit];
 
-  if (Math.random() <= attacker.multiHitchance) round(attacker, defender, true);
+  if (Math.random() <= attacker.multiHitChance) round(attacker, defender, true);
 
   return [singleHitDamage, isMultiHit];
 }
@@ -75,12 +141,10 @@ function log(singleHitDamage, attacker, defender, isMultiHit) {
   return message;
 }
 
-const p1 = new Player("Warrior", 1, 10, 10);
-const p2 = new Player("Marksman", 2, 10, 10);
-const p3 = new Player("Mage", 3, 10, 10);
-const p4 = new Player("Assasin", 4, 10, 10);
-
-fight(p4, p1);
+const p1 = new Player("Warrior", 10, 1, 10, 10);
+const p2 = new Player("Marksman", 10, 2, 10, 10);
+const p3 = new Player("Mage", 10, 3, 10, 10);
+const p4 = new Player("Assasin", 10, 4, 10, 10);
 
 function checkWinrate(attacker, defender, rounds) {
   let won = 0;
@@ -101,3 +165,5 @@ function tournament(p1, p2, p3, p4, roundsPerPlayer) {
 
   for (let i = 0; i < roundsPerPlayer; i++) {}
 }
+
+fight(p1, p4);
