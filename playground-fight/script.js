@@ -20,7 +20,7 @@ const gameVariables = {
     },
     2: {
       name: "marksman",
-      classDamageMultiplier: 3.12,
+      classDamageMultiplier: 3.11,
       hpMultiplier: 3,
       avoidDamageName: "dodged",
       avoidDamageChance: 0.5,
@@ -42,7 +42,7 @@ const gameVariables = {
     },
     4: {
       name: "assasin",
-      classDamageMultiplier: 2.6,
+      classDamageMultiplier: 2.61,
       hpMultiplier: 3,
       avoidDamageName: "blocked",
       avoidDamageChance: 0,
