@@ -2,21 +2,21 @@
 
 const env = {
   1: {
-    mame: "warrior",
+    name: "warrior",
     hpMultiplier: 10,
     avoidDamageName: "blocked",
     avoidDamageChance: 0.25,
     damageReduction: 0.5,
   },
   2: {
-    mame: "marksman",
+    name: "marksman",
     hpMultiplier: 3,
     avoidDamageName: "dodged",
     avoidDamageChance: 0.5,
     damageReduction: 0.25,
   },
   3: {
-    mame: "mage",
+    name: "mage",
     hpMultiplier: 5,
     avoidDamageName: "blocked",
     avoidDamageChance: 0,
@@ -60,8 +60,6 @@ function calculateSingleHitDamage(attacker, defender) {
 }
 
 function fight(attacker, defender) {
-  // TODO: DRY
-
   while (attacker.currentHp > 0 && defender.currentHp > 0) {
     round(attacker, defender);
     if (defender.currentHp <= 0) {
@@ -83,18 +81,21 @@ function round(attacker, defender, isMultiHit = false) {
   defender.currentHp -= singleHitDamage[0];
   log(singleHitDamage, attacker, defender, isMultiHit);
 
+  if (defender.currentHp <= 0) return [singleHitDamage, isMultiHit];
+
   if (Math.random() <= attacker.multiHitchance) round(attacker, defender, true);
 
-  return true;
+  return [singleHitDamage, isMultiHit];
 }
 
 function log(singleHitDamage, attacker, defender, isMultiHit) {
+  // BUG: combos not showing properly
   let message = "";
 
   if (singleHitDamage[0] == 0) {
-    message = `${defender.name} ${defender.avoidDamageName}. ${defender.name} HP: ${defender.currentHp}`;
+    message = `${attacker.name} missed! ${defender.name} ${defender.avoidDamageName}! ${defender.name} HP: ${defender.currentHp}`;
   } else if (singleHitDamage[1] == true) {
-    message = `${attacker.name} dealt ${singleHitDamage[0]}! damage. ${defender.name} HP: ${defender.currentHp}`;
+    message = `${attacker.name} dealt ${singleHitDamage[0]} (!) damage. ${defender.name} HP: ${defender.currentHp}`;
   } else {
     message = `${attacker.name} dealt ${singleHitDamage[0]} damage. ${defender.name} HP: ${defender.currentHp}`;
   }
