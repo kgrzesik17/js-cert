@@ -1,6 +1,6 @@
 "use strict";
 
-const fightLog = false;
+let fightLog = false;
 
 const gameVariables = {
   damageSpread: [0.75, 1.25],
@@ -8,7 +8,9 @@ const gameVariables = {
   classes: {
     1: {
       name: "warrior",
-      hpMultiplier: 10,
+      classDamageMultiplier: 1,
+      hpMultiplier: 9,
+      damageMultiplier: 1,
       avoidDamageName: "blocked",
       avoidDamageChance: 0.25,
       damageReduction: 0.5,
@@ -18,16 +20,18 @@ const gameVariables = {
     },
     2: {
       name: "marksman",
+      classDamageMultiplier: 3.12,
       hpMultiplier: 3,
       avoidDamageName: "dodged",
       avoidDamageChance: 0.5,
-      damageReduction: 0.25,
+      damageReduction: 0.2,
       multiHitChance: 0,
       alwaysHits: false,
       ignoreArmor: false,
     },
     3: {
       name: "mage",
+      classDamageMultiplier: 1.75,
       hpMultiplier: 5,
       avoidDamageName: "blocked",
       avoidDamageChance: 0,
@@ -38,10 +42,11 @@ const gameVariables = {
     },
     4: {
       name: "assasin",
+      classDamageMultiplier: 2.6,
       hpMultiplier: 3,
       avoidDamageName: "blocked",
       avoidDamageChance: 0,
-      damageReduction: 0.2,
+      damageReduction: 0.25,
       multiHitChance: 0.5,
       alwaysHits: false,
       ignoreArmor: false,
@@ -53,6 +58,8 @@ export class Player {
   constructor(name, level, player_class, strength, constitution) {
     this.name = name;
     this.damage = strength;
+    this.classDamageMultiplier =
+      gameVariables.classes[player_class].classDamageMultiplier;
     this.hp =
       gameVariables.classes[player_class].hpMultiplier * constitution * level;
     this.critChance = 0.5; // TODO
@@ -69,7 +76,8 @@ export class Player {
 }
 
 function calculateSingleHitDamage(attacker, defender) {
-  const damage_multiplier =
+  let damageMultiplier = attacker.classDamageMultiplier; // class damage multiplier
+  damageMultiplier *=
     Math.random() *
       (gameVariables.damageSpread[1] - gameVariables.damageSpread[0]) +
     gameVariables.damageSpread[0]; // damage spread
@@ -80,7 +88,7 @@ function calculateSingleHitDamage(attacker, defender) {
 
   if (!isHit) return [0, isCrit];
 
-  let damage = attacker.damage * damage_multiplier; // check damge fluctuation
+  let damage = attacker.damage * damageMultiplier; // check damge fluctuation
   if (isCrit) damage *= attacker.critMultiplier; // increase damage if crit
 
   if (!attacker.ignoreArmor) damage *= 1 - defender.damageReduction; // apply damage reduction
@@ -92,6 +100,8 @@ function calculateSingleHitDamage(attacker, defender) {
 }
 
 function fight(attacker, defender) {
+  // TODO: random person starting the fight
+
   attacker.currentHp = attacker.hp;
   defender.currentHp = defender.hp;
 
@@ -147,7 +157,7 @@ const p2 = new Player("Marksman", 10, 2, 10, 10);
 const p3 = new Player("Mage", 10, 3, 10, 10);
 const p4 = new Player("Assasin", 10, 4, 10, 10);
 
-function checkWinrate(attacker, defender, rounds) {
+function checkWinrate(attacker, defender, rounds = 1) {
   let won = 0;
   const hps = [];
 
@@ -161,18 +171,33 @@ function checkWinrate(attacker, defender, rounds) {
   const winrate = (won / rounds) * 100 + "%";
   const minimum = Math.min(...hps);
 
-  console.log(won);
-  console.log(winrate);
-  console.log(minimum);
+  // console.log(won);
+  // console.log(winrate);
+  // console.log(minimum);
   // console.log(hps);
-  return winrate;
+  return won;
 }
 
-function tournament(p1, p2, p3, p4, roundsPerPlayer) {
-  winrates = [0, 0, 0, 0];
+function tournament(players = [], rounds) {
+  const wins = [0, 0, 0, 0];
+  const winrates = [];
 
-  for (let i = 0; i < roundsPerPlayer; i++) {}
+  //  simulate battles everyone vs eveyrone rounds times
+  for (let round = 0; round < rounds; round++) {
+    for (let i = 0; i < players.length; i++) {
+      for (let j = 0; j < players.length; j++) {
+        if (players[i] == players[j]) continue;
+
+        wins[i] += checkWinrate(players[i], players[j]);
+      }
+    }
+  }
+
+  return wins;
 }
 
-// fight(p1, p4, true);
-checkWinrate(p1, p4, 100000);
+fight(p2, p4, true);
+
+fightLog = false;
+
+console.log(tournament([p1, p2, p3, p4], 1000));
