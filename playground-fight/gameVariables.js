@@ -1,0 +1,46 @@
+export const gameVariables = {
+  damageSpread: [0.75, 1.25],
+
+  classes: {
+    1: {
+      name: "warrior",
+      hpMultiplier: 10,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0.25,
+      damageReduction: 0.5,
+      multiHitchance: 0,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+    2: {
+      name: "marksman",
+      hpMultiplier: 3,
+      avoidDamageName: "dodged",
+      avoidDamageChance: 0.5,
+      damageReduction: 0.25,
+      multiHitchance: 0,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+    3: {
+      name: "mage",
+      hpMultiplier: 5,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0,
+      damageReduction: 0.1,
+      multiHitchance: 0,
+      alwaysHits: true,
+      ignoreArmor: true,
+    },
+    4: {
+      name: "assasin",
+      hpMultiplier: 3,
+      avoidDamageName: "blocked",
+      avoidDamageChance: 0,
+      damageReduction: 0.2,
+      multiHitchance: 0.5,
+      alwaysHits: false,
+      ignoreArmor: false,
+    },
+  },
+};

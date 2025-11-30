@@ -1,74 +1,12 @@
 "use strict";
-
-const env = {
-  damageSpread: [0.75, 1.25],
-
-  classes: {
-    1: {
-      name: "warrior",
-      hpMultiplier: 10,
-      avoidDamageName: "blocked",
-      avoidDamageChance: 0.25,
-      damageReduction: 0.5,
-      multiHitchance: 0,
-      alwaysHits: false,
-      ignoreArmor: false,
-    },
-    2: {
-      name: "marksman",
-      hpMultiplier: 3,
-      avoidDamageName: "dodged",
-      avoidDamageChance: 0.5,
-      damageReduction: 0.25,
-      multiHitchance: 0,
-      alwaysHits: false,
-      ignoreArmor: false,
-    },
-    3: {
-      name: "mage",
-      hpMultiplier: 5,
-      avoidDamageName: "blocked",
-      avoidDamageChance: 0,
-      damageReduction: 0.1,
-      multiHitchance: 0,
-      alwaysHits: true,
-      ignoreArmor: true,
-    },
-    4: {
-      name: "assasin",
-      hpMultiplier: 3,
-      avoidDamageName: "blocked",
-      avoidDamageChance: 0,
-      damageReduction: 0.2,
-      multiHitchance: 0.5,
-      alwaysHits: false,
-      ignoreArmor: false,
-    },
-  },
-};
-
-class Player {
-  constructor(name, player_class, strength, constitution) {
-    this.name = name;
-    this.damage = strength;
-    // this.hp = env.classes[player_class].hpMultiplier * constitution;
-    this.hp = constitution * 10; // TODO
-    this.critChance = 0.5; // TODO
-    this.critMultiplier = 2;
-    this.avoidDamageChance = env.classes[player_class].avoidDamageChance;
-    this.avoidDamageName = env.classes[player_class].avoidDamageName;
-    this.damageReduction = env.classes[player_class].damageReduction;
-    this.alwaysHits = env.classes[player_class].alwaysHits;
-    this.ignoreArmor = env.classes[player_class].ignoreArmor;
-
-    this.multiHitchance = env.classes[player_class].multiHitchance;
-  }
-}
+import { gameVariables } from "/gameVariables.js";
+import { Player } from "/Player.js";
 
 function calculateSingleHitDamage(attacker, defender) {
   const damage_multiplier =
-    Math.random() * (env.damageSpread[1] - env.damageSpread[0]) +
-    env.damageSpread[0]; // damage spread
+    Math.random() *
+      (gameVariables.damageSpread[1] - gameVariables.damageSpread[0]) +
+    gameVariables.damageSpread[0]; // damage spread
   const isCrit = Math.random() <= attacker.critChance ? true : false;
   let isHit = Math.random() > defender.avoidDamageChance ? true : false;
 
