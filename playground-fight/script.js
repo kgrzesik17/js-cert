@@ -1,5 +1,7 @@
 "use strict";
 
+const fightLog = false;
+
 const gameVariables = {
   damageSpread: [0.75, 1.25],
 
@@ -93,18 +95,16 @@ function fight(attacker, defender) {
   attacker.currentHp = attacker.hp;
   defender.currentHp = defender.hp;
 
-  console.log(attacker.multiHitChance);
-
   while (attacker.currentHp > 0 && defender.currentHp > 0) {
     round(attacker, defender);
     if (defender.currentHp <= 0) {
-      console.log(`${attacker.name} has won!`);
+      // console.log(`${attacker.name} has won!`);
       return 1;
     }
 
     round(defender, attacker);
     if (attacker.currentHp <= 0) {
-      console.log(`${defender.name} has won!`);
+      // console.log(`${defender.name} has won!`);
       return 0;
     }
   }
@@ -114,7 +114,8 @@ function round(attacker, defender, isMultiHit = false) {
   const singleHitDamage = calculateSingleHitDamage(attacker, defender);
 
   defender.currentHp -= singleHitDamage[0];
-  log(singleHitDamage, attacker, defender, isMultiHit);
+
+  if (fightLog) log(singleHitDamage, attacker, defender, isMultiHit);
 
   if (defender.currentHp <= 0) return [singleHitDamage, isMultiHit];
 
@@ -148,15 +149,22 @@ const p4 = new Player("Assasin", 10, 4, 10, 10);
 
 function checkWinrate(attacker, defender, rounds) {
   let won = 0;
+  const hps = [];
 
   for (let i = 0; i < rounds; i++) {
-    if (fight(attacker, defender)) won++;
+    if (fight(attacker, defender)) {
+      won++;
+      hps.push(attacker.currentHp);
+    }
   }
 
   const winrate = (won / rounds) * 100 + "%";
+  const minimum = Math.min(...hps);
 
   console.log(won);
   console.log(winrate);
+  console.log(minimum);
+  // console.log(hps);
   return winrate;
 }
 
@@ -166,4 +174,5 @@ function tournament(p1, p2, p3, p4, roundsPerPlayer) {
   for (let i = 0; i < roundsPerPlayer; i++) {}
 }
 
-fight(p1, p4);
+// fight(p1, p4, true);
+checkWinrate(p1, p4, 100000);
