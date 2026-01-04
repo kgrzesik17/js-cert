@@ -65,7 +65,49 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
+
+// rest pattern and parameters
+const arr = [1, 2, ...[3, 4]];
+
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// functions
+const add = function (...numbers) {
+  let sum = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('salame', 'ham', 'spinach', 'egg', 'broccoli');
+restaurant.orderPizza('mushrooms');
 
 /*
 // DESTRUCTURING OBJECTS
@@ -146,7 +188,7 @@ const [p = 1, q = 1, r = 1] = [8
 
 ];
 console.log(p, q, r);
-*/
+
 
 // SPREAD OPERATOR (...)
 
@@ -196,3 +238,4 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+*/
