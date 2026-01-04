@@ -297,7 +297,6 @@ function spellWord(word) {
 }
 
 spellWord("JavaScript");
-*/
 
 // 4.1
 const [mainKeyword, ...rest] = books[0].keywords;
@@ -313,3 +312,18 @@ function printBookAuthorsCount(title, ...authors) {
 }
 
 printBookAuthorsCount("Algorithms", "Robert Sedgewick", "Kevin Wayne");
+*/
+
+// 5.1
+function hasExamplesInJava(book) {
+  return book.programmingLanguage === "Java" || "no data available";
+}
+
+console.log(hasExamplesInJava(books[0]));
+console.log(hasExamplesInJava(books[1]));
+
+// 5.2
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent &&
+    console.log(`"${books[i].title}" provides online content`);
+}
