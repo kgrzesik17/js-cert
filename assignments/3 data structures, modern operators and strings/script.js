@@ -326,7 +326,6 @@ for (let i = 0; i < books.length; i++) {
   books[i].onlineContent &&
     console.log(`"${books[i].title}" provides online content`);
 }
-*/
 
 // 6.1
 for (let i = 0; i < books.length; i++) {
@@ -334,4 +333,16 @@ for (let i = 0; i < books.length; i++) {
     console.log(
       `${books[i].title} provides no information about its online content`
     );
+}
+*/
+
+// 7.1
+for (let i = 0; i < books.length; i++) {
+  books[i].edition ||= 1;
+  console.log(books[i].edition);
+}
+
+for (let i = 0; i < books.length; i++) {
+  books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
+  console.log(books[i].highlighted);
 }
