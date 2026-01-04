@@ -72,6 +72,15 @@ const restaurant = {
   },
 };
 
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// nullish values: null and undefined
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
+
+/*
 // use ANY data type, return ANY data type, short-circuting
 console.log(3 || 'Jonas');
 console.log('' || 'Jonas');
@@ -98,7 +107,6 @@ if (restaurant.orderPizza) {
 
 restaurant.orderPizza && restaurant.orderPizza('salame', 'ham');
 
-/*
 // rest pattern and parameters
 const arr = [1, 2, ...[3, 4]];
 
