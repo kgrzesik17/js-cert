@@ -72,6 +72,33 @@ const restaurant = {
   },
 };
 
+// use ANY data type, return ANY data type, short-circuting
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+restaurant.numGuests = 0;
+const gueses1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(gueses1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('---- AND ----');
+console.log(0 && 'Jonas');
+console.log(7 && 'Jonas');
+
+console.log('Hello' && 23 && null && 'jonas');
+
+// practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('salame', 'ham');
+
+/*
 // rest pattern and parameters
 const arr = [1, 2, ...[3, 4]];
 
@@ -109,7 +136,7 @@ add(...x);
 restaurant.orderPizza('salame', 'ham', 'spinach', 'egg', 'broccoli');
 restaurant.orderPizza('mushrooms');
 
-/*
+
 // DESTRUCTURING OBJECTS
 
 restaurant.orderDelivery({
