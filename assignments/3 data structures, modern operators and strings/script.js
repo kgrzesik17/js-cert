@@ -225,7 +225,6 @@ const books = [
   },
 ];
 
-/*
 // 1.1
 const [firstBook, secondBook] = books;
 console.log(firstBook, secondBook);
@@ -239,105 +238,10 @@ const ratings = [
   ["rating", 4.19],
   ["ratingsCount", 144584],
 ];
-
 const [[, rating], [, ratingsCount]] = ratings;
 console.log(rating, ratingsCount);
 
 // 1.4
 const ratingStars = [63405, 1808];
-const [oneStarRatings, fiveStarRatings, threeStarRatings = 0] = ratingStars;
-console.log(oneStarRatings, threeStarRatings, fiveStarRatings);
-
-
-// 2.1
-const { title, author, ISBN } = books[0];
-console.log(title, author, ISBN);
-
-// 2.2
-const { keywords: tags } = books[0];
-console.log(tags);
-
-// 2.3
-const { language, programmingLanguage = "unknown" } = books[6];
-console.log(language, programmingLanguage);
-
-// 2.4
-let bookTitle = "unknown";
-let bookAuthor = "unknown";
-
-({ title: bookTitle, author: bookAuthor } = books[0]);
-console.log(bookTitle, bookAuthor);
-
-// 2.5
-const {
-  thirdParty: {
-    goodreads: { rating },
-  },
-} = books[0];
-console.log(rating);
-
-// 2.6
-function printBookInfo({ title, author, year = "year unknown" }) {
-  console.log(`${title} by ${author}, ${year}`);
-}
-
-printBookInfo({
-  title: "Algorithms",
-  author: "Robert Sedgewick",
-  year: "2011",
-});
-
-printBookInfo({ title: "Algorithms", author: "Robert Sedgewick" });
-
-
-// 3.1
-const bookAuthors = [...books[0].author, ...books[1].author];
-console.log(bookAuthors);
-
-// 3.2
-function spellWord(word) {
-  console.log(...word);
-}
-
-spellWord("JavaScript");
-
-
-// 4.1
-const [mainKeyword, ...rest] = books[0].keywords;
-console.log(mainKeyword, rest);
-
-// 4.2
-const { publisher: bookPublisher, ...restOfTheBook } = books[1];
-console.log(bookPublisher, restOfTheBook);
-
-// 4.3
-function printBookAuthorsCount(title, ...authors) {
-  console.log(`The book ${title} has ${authors.length} authors.`);
-}
-
-printBookAuthorsCount("Algorithms", "Robert Sedgewick", "Kevin Wayne");
-
-
-// 5.1
-function hasExamplesInJava(book) {
-  console.log(book.programmingLanguage === "Java" || "no data available");
-}
-
-
-hasExamplesInJava(books[0]);
-hasExamplesInJava(books[1]);
-
-
-// 5.2
-for (let i = 0; i < books.length; i++) {
-  books[i].onlineContent &&
-    console.log(`${books[i].title} provides online content`);
-}
-
-
-// 6.2
-for (let i = 0; i < books.length; i++) {
-  books[i].onlineContent ??
-    console.log(`${books[i].title} provides no data about its online content`);
-}
-*/
+const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
+console.log(oneStarRatings, fiveStarRatings, threeStarRatings);
