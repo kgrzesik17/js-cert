@@ -196,8 +196,22 @@ function tournament(players = [], rounds) {
   return wins;
 }
 
+function animate() {
+  const weapon = document.querySelector(".weapon");
+  weapon.style.animation =
+    "attack 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards";
+
+  const missle = document.querySelector(".missle");
+  missle.style.animation =
+    "missle 1s cubic-bezier(0.61, 1, 0.88, 1) 0.8s forwards";
+  missle.style.opacity = "0";
+}
+
 fight(p2, p4, true);
 
 fightLog = false;
 
 console.log(tournament([p1, p2, p3, p4], 1000));
+
+animate();
+setTimeout(animate(), 2000);
