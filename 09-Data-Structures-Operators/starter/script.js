@@ -72,6 +72,18 @@ const restaurant = {
   },
 };
 
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item); // iterating through an array
+
+for (const [i, el] of menu.entries()) {
+  // [index, element]
+  console.log(`${i + 1}: ${el}`);
+}
+
+// console.log([...menu.entries()]);
+
+/*
 const rest1 = {
   name: 'Capri',
   // numGuests: 20,
@@ -83,7 +95,6 @@ const rest2 = {
   owner: 'Giovanni Rossi',
 };
 
-/*
 // OR assignment operator
 // rest1.numGuests = rest1.numGuests || 10;
 // rest2.numGuests = rest2.numGuests || 10;
@@ -305,7 +316,7 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
-*/
+
 
 const game = {
   team1: 'Bayern Munich',
@@ -382,3 +393,4 @@ printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
 // 7.
 team1 > team2 || console.log(`${game.team1} is more likely to win.`);
 team2 > team1 || console.log(`${game.team2} is more likely to win`);
+*/
