@@ -399,7 +399,6 @@ const newBook2 = {
 };
 
 console.log(newBook2);
-*/
 
 // 10.1
 function getFirstKeyword(book) {
@@ -417,3 +416,4 @@ const newBook2 = {
 
 console.log(getFirstKeyword(books[0]));
 console.log(getFirstKeyword(newBook2));
+*/
