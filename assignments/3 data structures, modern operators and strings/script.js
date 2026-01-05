@@ -372,7 +372,6 @@ console.log(allAuthors);
 for (const [i, el] of allAuthors.entries()) {
   console.log(`${i + 1}. ${el}`);
 }
-*/
 
 // 9.1
 const bookData = [
@@ -400,3 +399,21 @@ const newBook2 = {
 };
 
 console.log(newBook2);
+*/
+
+// 10.1
+function getFirstKeyword(book) {
+  return book.keywords?.[0];
+}
+
+// 10.2
+
+const pages = 880;
+const newBook2 = {
+  title: "The C Programming Language",
+  author: ["Brian W. Kernighan", "Dennis M. Ritchie"],
+  pages,
+};
+
+console.log(getFirstKeyword(books[0]));
+console.log(getFirstKeyword(newBook2));
