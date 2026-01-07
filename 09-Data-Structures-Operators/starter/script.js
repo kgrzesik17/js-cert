@@ -82,8 +82,9 @@ const mexicanFoods = new Set([
   'garlic',
 ]);
 
-// MAPS
+/*
 
+// MAPS
 const question = new Map([
   ['question', 'what is the best programming language?'],
   [1, 'C'],
@@ -119,7 +120,6 @@ console.log(question.entries());
 console.log(question.keys());
 console.log(question.values());
 
-/*
 const rest = new Map();
 rest.set('name', 'Classico Italiano');
 rest.set(1, 'Firenze, Italy');
