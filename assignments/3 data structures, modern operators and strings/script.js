@@ -528,3 +528,60 @@ function isContributor(author) {
 console.log(isContributor("Julie Sussman (Contributor)"));
 console.log(isContributor("Robert Sedgewick"));
 */
+
+// 16.1
+function normalizeAuthorName(name) {
+  let normalize = "";
+
+  normalize = name.toLowerCase().replace("(contributor)", "").trim();
+  const lastNameIndex = normalize.indexOf(" ");
+  const firstName =
+    normalize[0].toUpperCase() + normalize.slice(1, lastNameIndex);
+  const lastNameLower = normalize.slice(lastNameIndex + 1);
+  const lastName = lastNameLower[0].toUpperCase() + lastNameLower.slice(1);
+
+  const fullName = firstName + " " + lastName;
+
+  return fullName;
+}
+
+console.log(normalizeAuthorName("  JuliE sussMan (Contributor)"));
+console.log(normalizeAuthorName("kAcpEr GRZEsIK (contributor)"));
+
+console.log("---");
+
+// 16.2
+// let title = books[1].title;
+// title = title.replace("Programs", "Software");
+
+const title = books[1].title.replace("Programs", "Software");
+
+console.log(title);
+
+console.log("---");
+
+// 16.3
+function logBookTheme(title) {
+  const titleLower = title.toLowerCase();
+
+  if (titleLower.startsWith("computer")) {
+    console.log(title + ": This book is about computers");
+  } else if (
+    titleLower.includes("algorithms") ||
+    titleLower.includes("structures")
+  ) {
+    console.log(title + ": This book is about algorithms and data structures");
+  } else if (
+    titleLower.endsWith("system") ||
+    titleLower.endsWith("systems" && !titleLower.includes("operating"))
+  ) {
+    console.log(
+      title +
+        ": This book is about some systems, but definiely not about operating systems"
+    );
+  }
+}
+
+for (const book of books) {
+  logBookTheme(book.title);
+}
