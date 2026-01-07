@@ -80,6 +80,40 @@ const restaurant = {
   },
 };
 
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(ordersSet);
+
+console.log(new Set('Jonas'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+// example
+const staff = ['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter'];
+
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(
+  new Set(['waiter', 'chef', 'waiter', 'manager', 'chef', 'waiter']).size
+);
+console.log(new Set('kacpergrzesik').size);
+
 /*
 // LOOPING OBJECTS
 
@@ -477,7 +511,6 @@ BONUS: Create an object called 'scorers' which contains the names of the players
       }
 
 GOOD LUCK 😀
-*/
 
 const game = {
   team1: 'Bayern Munich',
@@ -537,7 +570,7 @@ for (const odd of Object.values(game.odds)) {
 const averageOdd = (total /= Object.values(game.odds).length);
 
 console.log(averageOdd);
-
+s;
 console.log(`---`);
 
 // 3.
@@ -555,8 +588,9 @@ console.log(`---`);
 // 4. bonus
 const scorers = {};
 
-for (const scorer of Object.values(game.scored)) {
+for (const scorer of game.scored) {
   scorers[scorer] ? (scorers[scorer] += 1) : (scorers[scorer] = 1);
 }
 
 console.log(scorers);
+*/
