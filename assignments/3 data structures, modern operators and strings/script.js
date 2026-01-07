@@ -503,7 +503,6 @@ for (const [key, value] of firstBookMap) {
     console.log(key);
   }
 }
-*/
 
 // 15.1
 const isnb = books[0].ISBN;
@@ -528,3 +527,4 @@ function isContributor(author) {
 
 console.log(isContributor("Julie Sussman (Contributor)"));
 console.log(isContributor("Robert Sedgewick"));
+*/

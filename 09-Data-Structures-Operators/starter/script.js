@@ -83,6 +83,84 @@ const mexicanFoods = new Set([
 ]);
 
 const airline = 'TAP Air Portugal';
+console.log(airline.toLowerCase());
+console.log('jonas'.toUpperCase());
+
+// fix the capitalization in name
+const passenger = 'jOnAS';
+const passengerLower = passenger.toLocaleLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+function correctCapitalization(name) {
+  const nameLower = name.toLocaleLowerCase();
+  const correct = nameLower[0].toUpperCase() + nameLower.slice(1);
+
+  return correct;
+}
+
+console.log(correctCapitalization('kAcPeR'));
+
+// comparing emails
+const email = 'hello@jonas.io';
+const loginEmail = '   Hello@Jonas.Io \n';
+
+// const lowerEmail = loginEmail.toLocaleLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+// console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+
+function checkEmail(enteredEmail, correctEmail) {
+  return enteredEmail === correctEmail;
+}
+
+console.log(checkEmail(normalizedEmail, email));
+
+// replacing
+const priceEU = '288,97€';
+const priceUS = priceEU.replace('€', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
+
+console.log(announcement.replace(/door/g, 'gate'));
+
+// booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Airb'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the new Airbus family');
+}
+
+// practice exercise
+const checkBaggage = function (items) {
+  const notAllowed = new Set(['knife', 'gun']);
+  const baggage = items.toLowerCase();
+
+  for (const item of notAllowed) {
+    if (baggage.includes(item)) return false;
+  }
+
+  return true;
+};
+
+console.log(checkBaggage('I have a laptop, some Food and a pocket Knife'));
+console.log(checkBaggage('Socks and camera'));
+console.log(checkBaggage('Got some snacks and a gun for protection'));
+
+/*
+const airline = 'TAP Air Portugal';
 const plane = 'A320';
 
 console.log(plane[0]);
@@ -116,6 +194,8 @@ const checkMiddleSeat = function (seat) {
 checkMiddleSeat('11B');
 checkMiddleSeat('22C');
 checkMiddleSeat('3E');
+
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #3
