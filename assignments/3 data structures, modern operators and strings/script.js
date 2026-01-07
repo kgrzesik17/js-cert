@@ -475,7 +475,6 @@ console.log(uniqueKeywordsArr);
 // 12.6
 uniqueKeywords.clear();
 console.log(uniqueKeywords);
-*/
 
 // 13.1 2 3 4 5
 const bookInfo = [
@@ -493,3 +492,4 @@ console.log(`"${bookMap.get("title")} by ${bookMap.get("author")}"`);
 console.log(bookMap.size);
 
 if (bookMap.has("author")) console.log("The author is known");
+*/
