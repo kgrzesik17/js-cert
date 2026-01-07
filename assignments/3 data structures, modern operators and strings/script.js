@@ -439,7 +439,6 @@ const entries2 = Object.entries(books[0].thirdParty.goodreads);
 // 11.4
 console.log(entries);
 console.log(entries2);
-*/
 
 // 12.1
 const allKeywords = [];
@@ -476,3 +475,21 @@ console.log(uniqueKeywordsArr);
 // 12.6
 uniqueKeywords.clear();
 console.log(uniqueKeywords);
+*/
+
+// 13.1 2 3 4 5
+const bookInfo = [
+  ["title", "Clean Code"],
+  ["author", "Robert C. Martin"],
+];
+
+const bookMap = new Map();
+bookMap.set(bookInfo[0][0], bookInfo[0][1]);
+bookMap.set(bookInfo[1][0], bookInfo[1][1]);
+bookMap.set("pages", 464);
+
+console.log(bookMap);
+console.log(`"${bookMap.get("title")} by ${bookMap.get("author")}"`);
+console.log(bookMap.size);
+
+if (bookMap.has("author")) console.log("The author is known");
