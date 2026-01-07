@@ -416,7 +416,6 @@ const newBook2 = {
 
 console.log(getFirstKeyword(books[0]));
 console.log(getFirstKeyword(newBook2));
-*/
 
 // 11.1
 const entries = [];
@@ -440,3 +439,40 @@ const entries2 = Object.entries(books[0].thirdParty.goodreads);
 // 11.4
 console.log(entries);
 console.log(entries2);
+*/
+
+// 12.1
+const allKeywords = [];
+
+// for (const book of books) {
+//   for (const keyword of book.keywords) {
+//     allKeywords.push(keyword);
+//   }
+// }
+
+for (const book of books) {
+  allKeywords.push(...book.keywords);
+}
+
+console.log(allKeywords);
+
+// 12.2
+const uniqueKeywords = new Set(allKeywords);
+console.log(uniqueKeywords);
+
+// 12.3
+uniqueKeywords.add("coding");
+uniqueKeywords.add("science");
+console.log(uniqueKeywords);
+
+// 12.4
+uniqueKeywords.delete("business");
+console.log(uniqueKeywords);
+
+// 12.5
+const uniqueKeywordsArr = [...uniqueKeywords];
+console.log(uniqueKeywordsArr);
+
+// 12.6
+uniqueKeywords.clear();
+console.log(uniqueKeywords);

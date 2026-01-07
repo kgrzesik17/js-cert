@@ -80,6 +80,7 @@ const restaurant = {
   },
 };
 
+/*
 const ordersSet = new Set([
   'Pasta',
   'Pizza',
@@ -114,7 +115,6 @@ console.log(
 );
 console.log(new Set('kacpergrzesik').size);
 
-/*
 // LOOPING OBJECTS
 
 // property names
