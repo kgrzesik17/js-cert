@@ -492,7 +492,6 @@ console.log(`"${bookMap.get("title")} by ${bookMap.get("author")}"`);
 console.log(bookMap.size);
 
 if (bookMap.has("author")) console.log("The author is known");
-*/
 
 // 14.1
 const firstBookMap = new Map(Object.entries(books[0]));
@@ -504,3 +503,4 @@ for (const [key, value] of firstBookMap) {
     console.log(key);
   }
 }
+*/
