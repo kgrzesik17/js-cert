@@ -504,3 +504,27 @@ for (const [key, value] of firstBookMap) {
   }
 }
 */
+
+// 15.1
+const isnb = books[0].ISBN;
+
+console.log(isnb[6], isnb[4], isnb[9], isnb[8]);
+
+// 15.2
+const quote =
+  "A computer once beat me at chess, but it was no match for me at kick boxing";
+
+console.log(quote.indexOf("chess"));
+
+// 15.3
+// console.log(quote.slice(quote.indexOf("boxing")));
+
+console.log(quote.slice(quote.lastIndexOf(" ") + 1));
+
+// 15.4
+function isContributor(author) {
+  return author.indexOf("(Contributor)") >= 0 ? true : false;
+}
+
+console.log(isContributor("Julie Sussman (Contributor)"));
+console.log(isContributor("Robert Sedgewick"));
