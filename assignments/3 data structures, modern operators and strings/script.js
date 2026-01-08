@@ -585,3 +585,47 @@ for (const book of books) {
   logBookTheme(book.title);
 }
 */
+
+// 17.1
+const bookCategories =
+  "science;computing;computer science;algorithms;business;operating systems;networking;electronics";
+
+function logBookCategories(bookCategories) {
+  for (const category of bookCategories.split(";")) {
+    console.log(category);
+  }
+}
+
+// logBookCategories(bookCategories);
+
+// 17.2
+function getKeywordsAsString(books) {
+  let keywords = [];
+
+  for (const book of books) {
+    keywords.push(...book.keywords);
+  }
+
+  keywords = [...new Set(keywords)];
+
+  console.log(keywords.join(";"));
+}
+
+// getKeywordsAsString(books);
+
+// 17.3
+const bookChapters = [
+  ["The Basics", 14],
+  ["Sorting", 254],
+  ["Searching", 372],
+  ["Graphs", 526],
+  ["Strings", 706],
+];
+
+function logBookChapters(bookChapters) {
+  for (const [chapter, page] of bookChapters) {
+    console.log(chapter.padEnd(20, "_") + " " + page);
+  }
+}
+
+logBookChapters(bookChapters);
