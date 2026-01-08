@@ -139,7 +139,7 @@ const text = document.querySelector('textarea').value;
 
 button.addEventListener('click', function () {
   const text = document.querySelector('textarea').value;
-  const lines = [...text.split('\n')];
+  const lines = text.split('\n');
   const emoji = '✅';
 
   for (let [index, line] of lines.entries()) {
@@ -160,6 +160,24 @@ button.addEventListener('click', function () {
     console.log(output);
   }
 });
+
+// jonas' way
+// button.addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   const lines = text.split('\n');
+//   const emoji = '✅';
+
+//   for (const [i, row] of lines.entries()) {
+//     const [first, second] = row.trim().toLowerCase().split('_');
+
+//     console.log(
+//       `${first}${second.replace(second[0], second[0].toUpperCase())}`.padEnd(
+//         20,
+//         ' '
+//       ) + emoji.repeat(i + 1)
+//     );
+//   }
+// });
 /*
 // split and join
 console.log('a+very+nice+string'.split('+'));
