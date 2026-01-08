@@ -527,7 +527,6 @@ function isContributor(author) {
 
 console.log(isContributor("Julie Sussman (Contributor)"));
 console.log(isContributor("Robert Sedgewick"));
-*/
 
 // 16.1
 function normalizeAuthorName(name) {
@@ -585,3 +584,4 @@ function logBookTheme(title) {
 for (const book of books) {
   logBookTheme(book.title);
 }
+*/
