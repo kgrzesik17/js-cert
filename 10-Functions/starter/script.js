@@ -255,7 +255,6 @@ BONUS TEST DATA 1: [5, 2, 3]
 BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
 GOOD LUCK 😀
-*/
 
 const poll = {
   question: 'What is your favourite programming language?',
@@ -265,7 +264,7 @@ const poll = {
   registerNewAnswer() {
     const answer = Number(
       prompt(
-        'What is your favourite programming language?\n0: JavaScript\n1: Python\n2: Rust\n3: C++\n(Write option number)'
+        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
       )
     );
 
@@ -305,3 +304,27 @@ poll.displayResults.call({ answers: bonus1 });
 poll.displayResults.call({ answers: bonus1 }, 'string');
 poll.displayResults.call({ answers: bonus2 });
 poll.displayResults.call({ answers: bonus2 }, 'string');
+*/
+
+const runOnce = function () {
+  console.log('This will never run again');
+};
+runOnce();
+
+// IIFE
+(function () {
+  console.log('This will never happen again');
+  const isPrivate = 23;
+})();
+
+// console.log(isPrivate);
+
+(() => console.log('This will ALSO never run again'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+// console.log(isPrivate);
+console.log(notPrivate);
