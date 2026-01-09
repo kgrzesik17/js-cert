@@ -304,7 +304,6 @@ poll.displayResults.call({ answers: bonus1 });
 poll.displayResults.call({ answers: bonus1 }, 'string');
 poll.displayResults.call({ answers: bonus2 });
 poll.displayResults.call({ answers: bonus2 }, 'string');
-*/
 
 const runOnce = function () {
   console.log('This will never run again');
@@ -328,3 +327,21 @@ runOnce();
 
 // console.log(isPrivate);
 console.log(notPrivate);
+*/
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
