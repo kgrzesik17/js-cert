@@ -147,7 +147,6 @@ movements.forEach(function (movement, i, arr) {
 });
 
 // you can't break of forEach
-*/
 
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -166,3 +165,4 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
+*/
