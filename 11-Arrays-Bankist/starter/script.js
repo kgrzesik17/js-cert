@@ -72,7 +72,7 @@ function displayMovements(movements) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
       </div>
       `;
 
@@ -86,6 +86,27 @@ function calcDisplayBalance(movements) {
   labelBalance.textContent = `${balance}€`;
 }
 calcDisplayBalance(account1.movements);
+
+function calcDisplaySummary(movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((sum, mov) => sum + mov, 0);
+
+  const out = Math.abs(
+    movements.filter(mov => mov < 0).reduce((sum, mov) => sum + mov)
+  );
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter(deposit => deposit >= 1)
+    .reduce((sum, deposit) => sum + deposit);
+
+  labelSumIn.textContent = `${incomes}€`;
+  labelSumOut.textContent = `${out}€`;
+  labelSumInterest.textContent = `${interest}€`;
+}
+calcDisplaySummary(account1.movements);
 
 function createUsernames(accounts) {
   accounts.forEach(function (account) {
@@ -325,17 +346,28 @@ TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
 TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
-*/
 
 function calcAverageHumanAge(ages) {
   // calculating the age in human years
   const humanAges = ages
     .map(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4))
     .filter(dogAge => dogAge >= 18)
-    .reduce((avg, dogAge, _, arr) => avg + dogAge / arr.length);
+    .reduce((avg, dogAge, _, arr) => avg + dogAge / arr.length, 0);
 
   console.log(humanAges);
 }
 
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+const eurToUsd = 1.1;
+console.log(movements);
+
+// pipeline
+const totalDepositsInUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositsInUSD);
+*/
