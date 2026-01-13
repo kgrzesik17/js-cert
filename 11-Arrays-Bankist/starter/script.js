@@ -79,8 +79,22 @@ function displayMovements(movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 }
-
 displayMovements(account1.movements);
+
+function createUsernames(accounts) {
+  accounts.forEach(function (account) {
+    account.username = account.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+}
+
+createUsernames(accounts);
+
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -91,7 +105,7 @@ displayMovements(account1.movements);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -223,7 +237,6 @@ function checkDogs(dogsJulia, dogsKate) {
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 console.log('---');
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
-*/
 
 const eurToUsd = 1.1;
 
@@ -253,3 +266,4 @@ const movementsDescriptions = movements.map(
 );
 
 console.log(movementsDescriptions);
+*/
