@@ -747,7 +747,6 @@ console.log(groupedByActivity);
 
 const groupedAccounts = Object.groupBy(accounts, ({ type }) => type);
 console.log(groupedAccounts);
-*/
 
 // create and fill arrays
 const arr = [1, 2, 3, 4, 5, 6, 7];
@@ -788,3 +787,78 @@ labelBalance.addEventListener('click', () => {
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
   console.log(movementsUI2);
 });
+
+console.log(movements);
+// const reversedMovements = movements.slice().reverse();
+const reversedMovements = movements.toReversed();
+console.log(reversedMovements);
+console.log(movements);
+
+// toSorted (sort), toSpliced (splice)
+
+// movements[1] = 2000;
+const newMovements = movements.with(1, 2000);
+console.log(newMovements);
+
+console.log(movements);
+*/
+
+// ARRAY METHODS PRACTICE
+
+// 1. total deposits
+const bankDepositSum = accounts
+  .flatMap(account => account.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, movement) => sum + movement, 0);
+
+console.log(bankDepositSum);
+
+// 2. how many deposits with at least 1000 usd
+const numDeposits1000 = accounts
+  .flatMap(account => account.movements)
+  .reduce((sum, movement) => (movement >= 1000 ? ++sum : sum), 0);
+
+console.log(numDeposits1000);
+
+// prefixed ++ operator
+let a = 10;
+console.log(++a);
+console.log(a++);
+console.log(a);
+
+// 3.
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
+// 4. convert string to title case
+// this is a nice title -> This Is a Nice Title
+
+function convertTitleCase(title) {
+  const capitalize = str => str.replace(str[0], str[0].toUpperCase());
+
+  const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  return capitalize(
+    title
+      .toLowerCase()
+      .split(' ')
+      .map(word => (word.includes(...exceptions) ? word : capitalize(word)))
+      .join(' ')
+  );
+}
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+console.log(convertTitleCase('and here is another title'));
