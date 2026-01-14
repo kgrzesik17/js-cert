@@ -461,3 +461,19 @@ const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 
 console.log(account);
 */
+
+console.log(movements);
+const lastWithdrawal = movements.findLast(mov => mov < 0);
+console.log(lastWithdrawal);
+
+// >2000
+('Your last large movement was X movements ago');
+
+function lastLargeMovement(movements) {
+  const movementsAgo =
+    movements.length - movements.findLastIndex(mov => Math.abs(mov) > 2000);
+
+  return `Your last large movements was ${movementsAgo} movements ago`;
+}
+
+console.log(lastLargeMovement(movements));
