@@ -65,19 +65,24 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-function displayMovements(movements, sort = false) {
+function displayMovements(acc, sort = false) {
   containerMovements.innerHTML = '';
 
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  const movs = sort
+    ? acc.movemnets.slice().sort((a, b) => a - b)
+    : acc.movemnets;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
+    const date = new Date(acc.movementsDates[i]);
+
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+          i + 1
+        } ${type}</div>
+        <div class="movements__date">${displayDate}</div>
           <div class="movements__value">${mov}€</div>
       </div>
       `;
@@ -89,7 +94,7 @@ function displayMovements(movements, sort = false) {
 function calcDisplayBalance(account) {
   account.balance = account.movements.reduce(
     (acc, movement) => acc + movement,
-    0
+    0,
   );
   labelBalance.textContent = `${account.balance}€`;
 }
@@ -100,7 +105,7 @@ function calcDisplaySummary(account) {
     .reduce((sum, mov) => sum + mov, 0);
 
   const out = Math.abs(
-    account.movements.filter(mov => mov < 0).reduce((sum, mov) => sum + mov)
+    account.movements.filter(mov => mov < 0).reduce((sum, mov) => sum + mov),
   );
 
   const interest = account.movements
@@ -126,7 +131,7 @@ function createUsernames(accounts) {
 createUsernames(accounts);
 
 function updateUI(account) {
-  displayMovements(account.movements);
+  displayMovements(account);
   calcDisplayBalance(account);
   calcDisplaySummary(account);
 }
@@ -138,7 +143,7 @@ btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
 
   currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
+    acc => acc.username === inputLoginUsername.value,
   );
   console.log(currentAccount);
 
@@ -162,7 +167,7 @@ btnTransfer.addEventListener('click', function (e) {
 
   const amount = Number(inputTransferAmount.value);
   const recieverAccount = accounts.find(
-    account => account.username === inputTransferTo.value
+    account => account.username === inputTransferTo.value,
   );
 
   inputTransferAmount.value = inputTransferTo.value = '';
@@ -207,7 +212,7 @@ btnClose.addEventListener('click', function (e) {
     currentAccount.pin === Number(inputClosePin.value)
   ) {
     const index = accounts.findIndex(
-      account => account.username === currentAccount.username
+      account => account.username === currentAccount.username,
     );
 
     console.log(index);
@@ -229,7 +234,7 @@ btnSort.addEventListener('click', function (e) {
 
   sorted = !sorted;
 
-  displayMovements(currentAccount.movements, sorted);
+  displayMovements(currentAccount, sorted);
 });
 
 /////////////////////////////////////////////////
@@ -934,13 +939,13 @@ console.log(dogs.some(dog => dog.curFood === dog.recFood));
 // 6.
 console.log(
   dogs.every(
-    dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
-  )
+    dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1,
+  ),
 );
 
 // 7.
 const dogsOkay = dogs.filter(
-  dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
+  dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1,
 );
 console.log(dogsOkay);
 
