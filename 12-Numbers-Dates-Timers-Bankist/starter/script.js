@@ -302,7 +302,6 @@ console.log(Math.floor(23.3));
 // rounding decimals
 console.log((2.7).toFixed(3));
 console.log(+(2.345).toFixed(2));
-*/
 
 console.log(5 % 2);
 console.log(8 % 3);
@@ -320,3 +319,19 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'blue';
   });
 });
+*/
+
+// numeric separators
+
+// 287,460,000,000
+const diameter = 287_460_000_000; // underscores are ignored
+console.log(diameter);
+
+const priceCents = 345_99;
+console.log(priceCents);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+console.log(Number('230_000'));
+console.log(parseInt('230_000'));
