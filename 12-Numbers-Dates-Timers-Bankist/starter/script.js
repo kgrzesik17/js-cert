@@ -335,3 +335,31 @@ const transferFee2 = 1_500;
 
 console.log(Number('230_000'));
 console.log(parseInt('230_000'));
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+
+console.log(721371238728362873187623768716836218763178837216n);
+console.log(BigInt(7213712387362873));
+
+// operators
+console.log(10000n + 10000n);
+console.log(3333341209432218302813012n ** 4n);
+// console.log(Math.sqrt(16n));
+
+const huge = 13218712893721983712983n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+// exceptions
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == 20);
+
+console.log(huge + ' is REALLY big!!!');
+
+// divisions
+console.log(10n / 3n);
+console.log(10 / 3);
