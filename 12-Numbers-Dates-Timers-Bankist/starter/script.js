@@ -189,14 +189,37 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    // in each call, print the remaining call to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // when 0 seconds, stop timer and log out the user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    // decrease 1 second
+    time--;
+  };
+
+  // set the time to 5 minutes
+  let time = 30;
+
+  // call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
-
-// FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+let currentAccount, timer;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -245,6 +268,11 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // timers
+
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -274,6 +302,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // reset the timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -293,6 +325,10 @@ btnLoan.addEventListener('click', function (e) {
       // Update UI
       updateUI(currentAccount);
     }, 2500);
+
+    // reset the timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
   inputLoanAmount.value = '';
 });
@@ -498,7 +534,6 @@ console.log('Poland: ', new Intl.NumberFormat('pl-PL', options).format(num));
 console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));
 console.log('Syria: ', new Intl.NumberFormat('ar-SY', options).format(num));
 console.log('Browser: ', new Intl.NumberFormat(navigator.language).format(num));
-*/
 
 // setTimeout
 
@@ -530,3 +565,4 @@ const options = {
 setInterval(() => {
   console.log(Intl.DateTimeFormat('pl', options).format(new Date()));
 }, 1000);
+*/
