@@ -30,6 +30,8 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/*
+
 //
 // selecting elements
 
@@ -62,10 +64,85 @@ message.innerHTML =
 header.append(message); // add as a first child
 // header.append(message.cloneNode(true));
 
-header.before(message);
-header.after(message);
+// header.before(message);
+// header.after(message);
 
 // delete elements
 document
   .querySelector('.btn--close-cookie')
   .addEventListener('click', () => message.remove());
+
+// styles
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.color); // only works for inline styles
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered'); // change variable
+
+// attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = 'Beatufil minimalist logo';
+
+// non-standard
+console.log(logo.designer);
+console.log(logo.getAttribute('designer')); // get non standard attribute
+logo.getAttribute('company', 'Bankist');
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// data attributes
+console.log(logo.dataset.versionNumber);
+
+// classes
+logo.classList.add();
+logo.classList.contains('c'); // not includes
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.scrollX, window.scrollY);
+
+  console.log(
+    'viewport',
+    document.documentElement.clientWidth,
+    document.documentElement.clientHeight,
+  );
+
+  // scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.scrollX,
+  //   s1coords.top + window.scrollY,
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.scrollX,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
