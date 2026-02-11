@@ -8,6 +8,7 @@ const nav = document.querySelector('.nav');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const section1 = document.querySelector('#section--1');
 
 ///////////////////////////////////////
 // Modal window
@@ -84,8 +85,6 @@ tabsContainer.addEventListener('click', function (e) {
 
 // menu fade animation
 const handleHover = function (e) {
-  console.log(this);
-
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
@@ -103,6 +102,17 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+// sticky navigation
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function (e) {
+  console.log(this.window.scrollY);
+
+  if (this.window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
 
 /*
 //
