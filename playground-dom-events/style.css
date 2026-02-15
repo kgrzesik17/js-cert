@@ -94,6 +94,14 @@ section {
   border-radius: 1rem;
 }
 
+.tabbed__text {
+  display: none;
+}
+
+.tabbed__text--active {
+  display: block;
+}
+
 .tabbed__buttons {
   display: flex;
   justify-content: center;

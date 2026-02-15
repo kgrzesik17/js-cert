@@ -41,6 +41,17 @@ nav.addEventListener("mouseover", navFade.bind(0.5));
 nav.addEventListener("mouseout", navFade.bind(1));
 
 // tabbed component
+
+// buttons
+
+function changeTab(tab) {
+  const visible = document.querySelector(`.tabbed__text--${tab}`);
+  const siblings = document.querySelectorAll(".tabbed__text");
+
+  siblings.forEach((el) => el.classList.remove("tabbed__text--active"));
+  visible.classList.add("tabbed__text--active");
+}
+
 tabbed.addEventListener("click", (e) => {
   if (!e.target.classList.contains("tabbed__button")) return;
 
@@ -48,10 +59,13 @@ tabbed.addEventListener("click", (e) => {
   const siblings = target
     .closest(".tabbed__buttons")
     .querySelectorAll(".tabbed__button");
+  const tabToChange = target.dataset.tab;
 
   siblings.forEach((el) => {
     el.classList.remove("tabbed__button--active");
   });
 
   target.classList.add("tabbed__button--active");
+
+  changeTab(tabToChange);
 });
