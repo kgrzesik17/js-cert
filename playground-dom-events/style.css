@@ -4,7 +4,8 @@
   --bg-color: #171717;
   --bg-light-color: #2c2c2c;
   --primary-color: #eaeaea;
-  --secondary-color: #ff7104;
+  --secondary-color: rgb(254, 127, 31);
+  --secondary-light-color: rgb(242, 157, 91);
 }
 
 body {
@@ -108,6 +109,12 @@ section {
   font-weight: 600;
   width: 20%;
   margin: -1rem 2rem;
+  transition: transform 0.25s ease-out;
+}
+
+.tabbed__button:hover {
+  cursor: pointer;
+  background-color: var(--secondary-light-color);
 }
 
 .tabbed__button--active {

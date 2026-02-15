@@ -4,10 +4,8 @@ const hero = document.querySelector(".hero");
 const header = document.querySelector("header");
 const nav = document.querySelector("nav");
 const navButtons = document.querySelectorAll(".nav__button");
-
 const about = document.querySelector("#about");
-
-// console.log(header.getBoundingClientRect().height);
+const tabbed = document.querySelector(".tabbed");
 
 // adjust the hero to navbar
 hero.style.height =
@@ -41,3 +39,19 @@ function navFade(e) {
 
 nav.addEventListener("mouseover", navFade.bind(0.5));
 nav.addEventListener("mouseout", navFade.bind(1));
+
+// tabbed component
+tabbed.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("tabbed__button")) return;
+
+  const target = e.target;
+  const siblings = target
+    .closest(".tabbed__buttons")
+    .querySelectorAll(".tabbed__button");
+
+  siblings.forEach((el) => {
+    el.style.transform = "translateY(0%)";
+  });
+
+  target.style.transform = "translateY(-25%)";
+});
