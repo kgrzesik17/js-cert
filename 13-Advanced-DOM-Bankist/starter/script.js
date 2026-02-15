@@ -467,3 +467,19 @@ console.log(h1.parentElement.children);
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 */
+
+// does not wait for images/external resources. just html, js needs to be loaded
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree was built!', e);
+});
+
+// after everything has loaded
+window.addEventListener('load', e => {
+  console.log('Page fully loaded', e);
+});
+
+// alert before the user is about to leave the page
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault(); // some browsers require it
+  console.log(e);
+});
