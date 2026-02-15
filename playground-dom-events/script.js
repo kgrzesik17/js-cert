@@ -15,6 +15,7 @@ hero.style.height =
   header.getBoundingClientRect().height +
   "px";
 
+// smooth scroll
 nav.addEventListener("click", (e) => {
   e.preventDefault();
   if (!e.target.hash) return;
@@ -23,3 +24,20 @@ nav.addEventListener("click", (e) => {
 
   target.scrollIntoView({ behavior: "smooth" });
 });
+
+// fading out on hover
+function navFade(e) {
+  if (!e.target.classList.contains("nav__button")) return;
+
+  const target = e.target;
+  const siblings = target.closest("ul").querySelectorAll(".nav__button");
+
+  siblings.forEach((item) => {
+    item.style.opacity = this;
+  });
+
+  target.style.opacity = "100%";
+}
+
+nav.addEventListener("mouseover", navFade.bind(0.5));
+nav.addEventListener("mouseout", navFade.bind(1));
