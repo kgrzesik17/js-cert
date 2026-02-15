@@ -6,6 +6,7 @@
   --primary-color: #eaeaea;
   --secondary-color: rgb(254, 127, 31);
   --secondary-light-color: rgb(242, 157, 91);
+  --tertiary-color: rgb(232, 236, 117);
 }
 
 body {
@@ -101,7 +102,7 @@ section {
 
 .tabbed__button {
   font-size: 2rem;
-  background-color: var(--secondary-color);
+  background-color: var(--tertiary-color);
   border: 0;
   border-radius: 8rem;
   color: var(--bg-color);
@@ -119,4 +120,5 @@ section {
 
 .tabbed__button--active {
   transform: translateY(-25%);
+  background-color: var(--secondary-color);
 }

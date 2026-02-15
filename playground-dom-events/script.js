@@ -50,8 +50,8 @@ tabbed.addEventListener("click", (e) => {
     .querySelectorAll(".tabbed__button");
 
   siblings.forEach((el) => {
-    el.style.transform = "translateY(0%)";
+    el.classList.remove("tabbed__button--active");
   });
 
-  target.style.transform = "translateY(-25%)";
+  target.classList.add("tabbed__button--active");
 });
