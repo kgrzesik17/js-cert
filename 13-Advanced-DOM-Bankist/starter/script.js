@@ -466,7 +466,6 @@ console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function (el) {
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
-*/
 
 // does not wait for images/external resources. just html, js needs to be loaded
 document.addEventListener('DOMContentLoaded', function (e) {
@@ -483,3 +482,4 @@ window.addEventListener('beforeunload', function (e) {
   e.preventDefault(); // some browsers require it
   console.log(e);
 });
+*/
