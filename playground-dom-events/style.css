@@ -22,6 +22,7 @@ a {
 .container-xxl {
   width: 100%;
   max-width: 1200px;
+  padding: 0 2rem;
 }
 
 a:hover {
@@ -69,6 +70,7 @@ header {
   font-weight: 600;
   font-size: 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -77,4 +79,37 @@ header {
 main {
   display: flex;
   justify-content: center;
+}
+
+section {
+  /* height: 100vh; */
+}
+
+/* TABBED */
+.tabbed__text-container {
+  background: var(--bg-light-color);
+  padding: 4rem;
+  border-radius: 1rem;
+}
+
+.tabbed__buttons {
+  display: flex;
+  justify-content: center;
+  transform: translateY(-750%);
+}
+
+.tabbed__button {
+  font-size: 2rem;
+  background-color: var(--secondary-color);
+  border: 0;
+  border-radius: 8rem;
+  color: var(--bg-color);
+  font-family: inherit;
+  font-weight: 600;
+  width: 20%;
+  margin: -1rem 2rem;
+}
+
+.tabbed__button--active {
+  transform: translateY(-25%);
 }
