@@ -20,7 +20,7 @@ nav.addEventListener("click", (e) => {
 
   const target = document.querySelector(e.target.hash);
 
-  target.scrollIntoView({ behavior: "smooth" });
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
 // fading out on hover
