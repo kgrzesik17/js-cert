@@ -77,7 +77,6 @@ console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
-*/
 
 const Car = function (make, speed) {
   this.make = make;
@@ -109,3 +108,39 @@ mercedes.brake();
 
 console.log(bmw);
 console.log(mercedes);
+*/
+
+// class expression
+// const personCl = class{}
+
+// class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // methods will be added to .prototype property
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  // greet() {
+  //   console.log(`Hey ${this.firstName}`);
+  // }
+}
+
+const jessica = new PersonCl('Jessica', 1996);
+console.log(jessica);
+jessica.calcAge();
+
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+PersonCl.prototype.greet = function () {
+  console.log(`Hey ${this.firstName}`);
+};
+jessica.greet();
+
+// 1. classes are NOT hoisted -> we can't use them before the declaration
+// 2. classes are first-class citizens (we cant pass and return them from functions)
+// 3. classes are executed in strict mode
