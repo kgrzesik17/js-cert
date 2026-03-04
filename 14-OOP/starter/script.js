@@ -108,7 +108,6 @@ mercedes.brake();
 
 console.log(bmw);
 console.log(mercedes);
-*/
 
 // class expression
 // const personCl = class{}
@@ -223,3 +222,48 @@ console.log(steven.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge();
+*/
+
+// 2.1
+class Car {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    this.display();
+  }
+
+  brake() {
+    this.speed -= 5;
+    this.display();
+  }
+
+  display() {
+    console.log(`${this.make}'s new speed is ${this.speed}`);
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 95);
+
+bmw.accelerate();
+mercedes.brake();
+
+// 2.2
+console.log(bmw.speedUS);
+console.log(mercedes.speedUS);
+
+// 2.3
+bmw.speedUS = 90;
+bmw.display();
