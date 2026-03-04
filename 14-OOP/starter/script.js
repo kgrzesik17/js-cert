@@ -344,7 +344,6 @@ console.log(tesla);
 tesla.chargeBattery(100);
 tesla.accelerate();
 tesla.brake();
-*/
 
 class PersonCl {
   constructor(fullName, birthYear) {
@@ -400,3 +399,61 @@ class StudentCl extends PersonCl {
 const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.introduce();
 martha.calcAge();
+*/
+
+class Car {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    this.display();
+  }
+
+  brake() {
+    this.speed -= 5;
+    this.display();
+  }
+
+  display() {
+    console.log(`${this.make}'s new speed is ${this.speed}`);
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+class EV extends Car {
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.charge = charge;
+  }
+
+  setCharge(charge) {
+    this.charge = charge;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.charge -= 1;
+    console.log(
+      `${this.make}'s new speed is ${this.speed}, and the new charge is ${this.charge}`,
+    );
+  }
+}
+
+const tesla = new EV('Tesla', 120, 50);
+
+console.log(tesla);
+tesla.accelerate();
+tesla.brake();
+tesla.setCharge(100);
+console.log(tesla.charge);
+console.log(tesla.speedUS);
