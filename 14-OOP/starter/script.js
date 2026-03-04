@@ -120,6 +120,7 @@ class PersonCl {
     this.birthYear = birthYear;
   }
 
+  // instance methods
   // methods will be added to .prototype property
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -143,6 +144,12 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  // static method
+  static hey() {
+    console.log('Hey there 🍳');
+    console.log(this);
+  }
 }
 
 const jessica = new PersonCl('Jessica ', 1996);
@@ -163,6 +170,8 @@ jessica.greet();
 
 const walter = new PersonCl('Walter White', 1965);
 
+PersonCl.hey();
+
 const account = {
   owner: 'jonas',
   movements: [200, 530, 120, 300],
@@ -180,3 +189,11 @@ console.log(account.latest);
 
 account.latest = 50;
 console.log(account.movements);
+
+// PersonCl.hey = function () {
+//   console.log('Hey there 🍳');
+//   console.log(this);
+// };
+
+// PersonCl.hey();
+// jessica.hey();
