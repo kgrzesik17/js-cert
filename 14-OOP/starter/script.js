@@ -485,7 +485,6 @@ const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
 jay.calcAge();
-*/
 
 // encapsulation: private class fields and methods
 
@@ -560,3 +559,87 @@ console.log(acc1.getMovements);
 
 console.log(Account.test());
 // console.log(acc1.test()); // does not work
+*/
+
+// CHALLENGE 4
+
+class Car {
+  #make;
+  #speed;
+
+  constructor(make, speed) {
+    this.#make = make;
+    this.#speed = speed;
+  }
+
+  displaySpeed() {
+    console.log(`${this.#make} going at ${this.#speed} km/h`);
+    return this;
+  }
+
+  accelerate() {
+    this.#speed += 10;
+    this.displaySpeed();
+    return this;
+  }
+
+  brake() {
+    this.#speed -= 5;
+    this.displaySpeed();
+    return this;
+  }
+
+  get speedUS() {
+    return this.#speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.#speed = speed * 1.6;
+  }
+
+  get speed() {
+    return this.#speed;
+  }
+
+  set speed(speed) {
+    this.#speed = speed;
+  }
+
+  get make() {
+    return this.#make;
+  }
+}
+
+class EV extends Car {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    console.log(
+      `${this.make} going at ${this.speed} km/h, with a charge of ${this.#charge}%`,
+    );
+    return this;
+  }
+}
+
+const bmw = new Car('BMW', 120);
+
+bmw.accelerate();
+bmw.brake();
+console.log(bmw.speedUS);
+
+const tesla = new EV('Tesla', 100, 50);
+tesla.accelerate();
+console.log(tesla);
+
+tesla.accelerate().brake().brake().brake().accelerate();
