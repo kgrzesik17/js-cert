@@ -487,47 +487,67 @@ jay.introduce();
 jay.calcAge();
 */
 
+// encapsulation: private class fields and methods
+
+// 1) public fields
+// 2) private fields
+// 3) public methods
+// 4) private methods
+// static version of these 4 - not accessible on instances
+
 class Account {
+  // public fields
+  locale = navigator.language;
+  bank = 'Bankist';
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
+    // this.movements = [];
+    // this.locale = navigator.language;
 
     console.log(`Thanks for openin an account, ${owner}`);
   }
 
-  // public interface
+  // public interface (API)
+  get getMovements() {
+    return this.#movements;
+  }
+
   deposit(val) {
-    this.movements.push(val);
+    this.#movements.push(val);
   }
 
   withdraw(val) {
     this.deposit(-val);
   }
 
-  approveLoan(val) {
+  #approveLoan(val) {
     return true;
   }
 
   requestLoan(val) {
-    if (this.approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved`);
     }
   }
+
+  static test() {
+    return true;
+  }
 }
 
 const acc1 = new Account('Jonas', 'EUR', 1111);
-console.log(acc1);
 
-// acc1.movements.push(250);
-// acc1.movements.push(-140);
-acc1.deposit(250);
-acc1.withdraw(140);
-acc1.requestLoan(1000);
-acc1.approveLoan(1000);
+acc1.deposit(300);
+acc1.withdraw(100);
 
 console.log(acc1);
-console.log(acc1.pin);
+console.log(acc1.getMovements);
+
+console.log(Account.test());
+// console.log(acc1.test()); // does not work
