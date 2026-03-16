@@ -114,7 +114,7 @@ class App {
     this.#map.on('click', this._showForm.bind(this));
 
     this.#workouts.forEach(work => {
-      this._renderWorkout(work);
+      // this._renderWorkout(work);
       this._renderWorkoutMarker(work);
     });
   }
@@ -296,6 +296,7 @@ class App {
 
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
+    const uniqueIds = [];
 
     if (!data) return;
 
@@ -303,7 +304,10 @@ class App {
 
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
+      uniqueIds.push(work.id);
     });
+
+    console.log(this.#workouts);
   }
 
   reset() {
