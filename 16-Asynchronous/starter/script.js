@@ -23,6 +23,8 @@ function renderCountry(data, className = '') {
   countriesContainer.style.opacity = 1;
 }
 
+/*
+
 function getCountryAndNeighbor(country) {
   // NEW COUNTRIES API URL (use instead of the URL shown in videos):
   // https://restcountries.com/v2/name/portugal
@@ -62,3 +64,7 @@ function getCountryAndNeighbor(country) {
 }
 
 getCountryAndNeighbor('poland');
+*/
+
+const request = fetch('https://restcountries.com/v2/name/poland');
+console.log(request);
