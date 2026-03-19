@@ -66,5 +66,23 @@ function getCountryAndNeighbor(country) {
 getCountryAndNeighbor('poland');
 */
 
-const request = fetch('https://restcountries.com/v2/name/poland');
-console.log(request);
+// function getCountryData(country) {
+//   // handle a fulfilled promise - .then(callbackFn)
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(function (response) {
+//       return response.json(); // async as well, so we need to handle it
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       renderCountry(data[0]);
+//     });
+// }
+
+// simplified version
+function getCountryData(country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(response => response.json())
+    .then(data => renderCountry(data[0]));
+}
+
+getCountryData('poland');
