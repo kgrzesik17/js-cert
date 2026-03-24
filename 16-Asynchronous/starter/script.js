@@ -20,7 +20,12 @@ function renderCountry(data, className = '') {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
+}
+
+function renderError(msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  // countriesContainer.style.opacity = 1;
 }
 
 /*
@@ -94,7 +99,18 @@ function getCountryData(country) {
       return fetch(`https://restcountries.com/v2/alpha/${neighbor}`);
     })
     .then(response => response.json())
-    .then(data => renderCountry(data, 'neighbor'));
+    .then(data => renderCountry(data, 'neighbor'))
+    .catch(err => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong: ${err.message}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 }
 
-getCountryData('poland');
+btn.addEventListener('click', function () {
+  getCountryData('poland');
+});
+
+getCountryData('kdsadskaljd');
