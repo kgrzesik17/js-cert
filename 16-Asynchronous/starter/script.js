@@ -83,6 +83,7 @@ getCountryAndNeighbor('poland');
 //     });
 // }
 
+/*
 function getJSON(url, errorMsg = 'Something went wrong') {
   return fetch(url).then(response => {
     if (!response.ok) {
@@ -125,3 +126,36 @@ btn.addEventListener('click', function () {
 });
 
 getCountryData('australia');
+*/
+
+function whereAmI(lat, lng) {
+  fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`,
+  )
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Something went wrong (${response.status}`);
+
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are now in ${data.city}, ${data.countryName}`);
+
+      return fetch(`https://restcountries.com/v2/name/${data.countryName}`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Something went wrong (${response.status})`);
+
+      return response.json();
+    })
+    .then(data => {
+      renderCountry(data[0]);
+      countriesContainer.style.opacity = 1;
+    })
+
+    .catch(err => console.log(`Error: ${err.status}`));
+}
+
+whereAmI(-33.933, 18.474);
