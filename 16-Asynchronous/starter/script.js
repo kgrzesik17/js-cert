@@ -171,7 +171,6 @@ Promise.resolve('Resolved promise 2').then(res => {
 });
 
 console.log('Test end');
-*/
 
 // auto execute the function
 const lotteryPromise = new Promise(function (resolve, reject) {
@@ -220,3 +219,55 @@ wait(1)
 
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('abc')).catch(x => console.error(x));
+*/
+
+// promisify a callback based API
+function getPosition() {
+  return new Promise(function (resolve, reject) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     position => resolve(position),
+    //     err => reject(err),
+    // );
+
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
+// getPosition().then(pos => console.log(pos));
+
+function whereAmI() {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`,
+      );
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Something went wrong (${response.status}`);
+
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are now in ${data.city}, ${data.countryName}`);
+
+      return fetch(`https://restcountries.com/v2/name/${data.countryName}`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Something went wrong (${response.status})`);
+
+      return response.json();
+    })
+    .then(data => {
+      renderCountry(data[0]);
+      countriesContainer.style.opacity = 1;
+    })
+
+    .catch(err => console.log(`Error: ${err.status}`));
+}
+
+btn.addEventListener('click', whereAmI);
