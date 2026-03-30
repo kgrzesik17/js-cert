@@ -20,12 +20,12 @@ function renderCountry(data, className = '') {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 }
 
 function renderError(msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 }
 
 /*
@@ -270,7 +270,6 @@ function whereAmI() {
 }
 
 btn.addEventListener('click', whereAmI);
-*/
 
 const imgContainer = document.querySelector('.images');
 
@@ -316,3 +315,35 @@ createImage('img/img-1.jpg')
   })
   .then(() => (currentImage.style.display = 'none'))
   .catch(err => console.error(err));
+*/
+
+function getPosition() {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
+async function whereAmI(country) {
+  // geolocation
+  const pos = await getPosition();
+  console.log(pos);
+
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // reverse geocoding
+  const resGeo = await fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`,
+  );
+
+  const dataGeo = await resGeo.json();
+
+  // country data
+  const res = await fetch(
+    `https://restcountries.com/v2/name/${dataGeo.countryName}`,
+  );
+  const data = await res.json();
+  renderCountry(data[0]);
+}
+
+whereAmI();
+console.log('FIRST');
