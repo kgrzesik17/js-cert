@@ -39,7 +39,6 @@ console.log(lastPost);
 
 const lastPost2 = await getLastPost();
 console.log(lastPost2);
-*/
 
 // encapsulation
 const ShoppingCart2 = (function () {
@@ -68,3 +67,12 @@ const ShoppingCart2 = (function () {
 ShoppingCart2.addToCart('apple', 4);
 ShoppingCart2.addToCart('pizza', 2);
 console.log(ShoppingCart2);
+
+// commonjs modules
+// export.addToCart = function(product, quantity) {
+//   cart.push({ product, quantity });
+//   console.log(`${quantity} ${product} added to cart`);
+// }
+
+// const { addToCart } = require('./shoppingCart.js')
+*/
