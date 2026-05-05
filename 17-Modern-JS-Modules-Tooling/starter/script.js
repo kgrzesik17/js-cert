@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 // import shoppingCart from './shoppingCart';
 
@@ -14,6 +14,8 @@ import * as ShoppingCart from './shoppingCart.js';
 ShoppingCart.addToCart('bread', 5); // like an API
 console.log(ShoppingCart.totalPrice);
 
+*/
+
 import add, { cart } from './shoppingCart.js';
 add('pizza', 2);
 add('bread', 5);
@@ -21,14 +23,13 @@ add('apple', 4);
 
 console.log(cart); // cart is not [] anymore
 
+/*
 // console.log('Start fetching');
-// const res = await fetch('https://jsonplaceholder.typicode.com/posts');
 // const data = await res.json();
 // console.log(data);
 // console.log('Something');
 
 async function getLastPost() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
   const data = await res.json();
 
   return { title: data.at(-1).title, text: data.at(-1).body };
@@ -85,7 +86,8 @@ export.addToCart = function (product, quantity) {
 const { addToCart } = require('./shoppingCart.js');
 */
 
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es'; // enough for parcel
 
 const state = {
   cart: [
@@ -102,3 +104,7 @@ state.user.loggedIn = false;
 console.log(stateClone);
 
 console.log(stateDeepClone);
+
+if (module.hot) {
+  module.hot.accept();
+}
