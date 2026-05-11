@@ -11,8 +11,10 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "core-js": "^3.49.0",
     "leaflet": "^1.9.4",
-    "lodash-es": "^4.18.1"
+    "lodash-es": "^4.18.1",
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "parcel": "^2.16.4"
